@@ -2,24 +2,24 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: <i>Data Scientist Specialist</i> | <i>Machine Learning Engineer</i> | <i>Software Engineer</i> 
 
 profile:
   align: right
   image: io.jpg
   image_circular: false # crops the image to make it circular
   address: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p>Lat: 45° 4' 30.2082</p>
+    <p>Lon: 7° 40' 38.4924</p>
+    <p>Torino, Italy</p>
 
 news: true  #  includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+As a Data Scientist Specialist, I have extensive experience in leveraging cutting-edge technologies such as Natural Language Processing (NLP) and Deep Learning models to extract insights from complex data sets. My expertise includes designing, developing, and deploying advanced data science solutions that drive business outcomes.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+I have worked extensively with AWS cloud infrastructure, Azure, and other cloud platforms, using technologies such as Docker, Kubernetes, and FastAPI. With a Ph.D. in Physics, Complex Systems, I have a strong foundation in computational analysis for socio-economic sciences. My skills include data analysis, software engineering, machine learning, and deep learning. With experience in various domains such as finance, retail, and CRM. My experience includes leading end-to-end projects with teams composed of data engineers, data scientists, and machine learning engineers.
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+I am also proud to hold dual citizenship in Italy and Brazil, which enables me to offer a unique perspective on global data science challenges and opportunities. I am committed to delivering innovative solutions that drive business outcomes, and I am excited to collaborate with dynamic organizations that share my passion for data science and innovation.
