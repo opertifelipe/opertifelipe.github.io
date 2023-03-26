@@ -7,4 +7,4 @@ nav: true
 nav_order: 5
 ---
 
-If you want to collaborate, or if you want to share new ideas, or if you want to simply drink a beer, please contact me at: [operti.felipe@gmail.com](operti.felipe@gmail.com).
+If you want to collaborate, share new ideas, or simply drink a beer, please contact me at: [operti.felipe@gmail.com](operti.felipe@gmail.com).
