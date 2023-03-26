@@ -2,96 +2,109 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
+      value: Felipe Operti
     - name: Date of Birth
-      value: 14th March 1879
+      value: 5th April 1990
     - name: Languages
-      value: English, German
+      value: English, Italian, Portuguese
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: PhD in Physics, Complex Systems
+      institution: Federal University of Ceara, Fortaleza, Brazil
+      year: 2018
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+        - Thesis "Computational analysis for socio-economic sciences".
+    - title: Visiting PhD in Physics, Complex Systems
+      institution: City College of New York, New York, United States
+      year: 2018
+    - title: Visiting PhD in Physics, Complex Systems
+      institution: University La Sapienza, Rome, Italy
+      year: 2017  
+    - title: MSc in Physics, Complex Systems
+      institution: Federal University of Ceara, Fortaleza, Brazil
+      year: 2015
       description:
-        - Description 1.
-        - Description 2.
+        - Thesis "Interpolation strategy based on Dynamic Time Warping".
+    - title: BSc in Physics
+      institution: University of Turin, Turin, Italy
+      year: 2015
+      description:
+        - Thesis "Monte Carlo Simulation of the radiation distribution emitted by a CT scan in the field of the radioprotection".        
+
 
 - title: Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Data Science Specialist
+      institution: Reale Mutua, Turin, Italy
+      year: Jul 2022 - NOW  
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - As a Data Scientist Specialist at Reale Mutua, my primary focus is on leveraging cutting-edge technologies such a Natural Language Processing (NLP) and Deep Learning models to extract insights from complex data sets. I work extensively on Azure cloud infrastructure, utilizing its powerful capabilities to design, develop, and deploy advanced data science solutions that drive business outcomes.
+        - <u>Technologies:</u> Azure, AzureML, Azure Cognitive Services, Python, Docker, Pytorch, HuggingFace, Spacy, etc.
+
+    - title: Data Scientist | Machine Learning Engineer
+      institution: Inda - Intervieweb S.r.l. - Zucchetti Group, Turin, Italy
+      year: MAR 2021 - JUL 2022
       description:
-        - Description 1.
-        - Description 2.
+        - Data scientist at INDA (Intervieweb S.r.l. solution, a Zucchetti company) working principally with Natural Language Processing (NLP) and Deep Learning. Responsible for the development, deployment, and maintenance of machine learning solutions. 
+        - <u>Technologies:</u> AWS EKS, AWS ECS, AWS Lambda, AWS Sagemaker, Python, Docker, Kubernetes, FastAPI, ElasticSearch, MongoDB, etc.
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+    - title: Data Scientist Specialist
+      institution: Samsung SDS, São Paulo, São Paulo, Brazil
+      year: NOV 2020 - MAR 2021
       description:
+        - Data Scientist Specialist in CRM area at Samsung SDS. Responsible for the development and deployment of propensity models, churn models, sentimental analysis, and RFV models.
+        - <u>Technologies:</u> Data Lake, HDFS, Brightics, Adobe Campaign, Python, Scala, Docker, Spark, and PySpark.
 
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
+    - title: Data Scientist Specialist
+      institution: ViaVarejo, São Paulo, São Paulo, Brazil
+      year: JUL 2020 - NOV 2020
+      description:
+        - Responsible for the development of machine learning models for price optimization and retail assortment.
+        - <u>Technologies:</u> Data Lake, Cloud, DataBricks, Azure, Python, Scala, Jenkins, Docker, Spark, and PySpark.
 
-- title: Open Source Projects
-  type: time_table
-  contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
 
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 1921
-      items: 
-        - Nobel Prize in Physics 
-        - Matteucci Medal
-    - year: 2029
-      items: 
-        - Max Planck Medal
+    - title: Senior Data Scientist
+      institution: Santander Bank, São Paulo, São Paulo, Brazil 
+      year: AUG 2019 - JUL 2020
+      description:
+        - Data Scientist in Santander DataLab. Data Lab is an innovative area whose aim is to develop large cross-areas end-to-end projects. Data Lab works as a consultancy society within the bank. In the lab, the interaction between product owners, data engineers, data scientists, and machine learning engineers is strongly encouraged. My responsibilities there are from one side to develop machine learning models (as data scientist consultant). Due to the heterogeneity sof the projects, also the applied machine learning and deep learning models are heterogeneous. On the other side, I am also responsible for checking the entire pipeline (from the ETL, the development of the models, and finally the deployment).
+        - <u>Technologies:</u> Data Lake, Hadoop, Cloudera, Python, Scala, SQL, Hive, Impala, Spark, PySpark, and Oracle.
 
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items: 
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
+    - title: Senior Data Scientist
+      institution: Santander Bank, São Paulo, São Paulo, Brazil 
+      year: DEC 2018 - AUG 2019
+      description:
+        - Data scientist at Santander Bank in Customer Relationship Management (CRM). My position there was of senior data scientist and my responsibility was the development of machine learning models for different purposes (propensity and churn models for different products among others). Such models were typically machine learning supervised algorithms such as Random Forest, Gradient Boosting, Logistic Regression, and Artificial Neural Networks as well as unsupervised algorithms such as hierarchical, k-means, and DBSCAN. Furthermore, we worked with NLP algorithms for sentimental analysis of reclamations data.
+        - <u>Technologies:</u> Data Lake, Hadoop, Cloudera, python, R, Scala, SQL, Java, ShellScript, Hive, Impala, Spark, PySpark, and Oracle.
 
-- title: Other Interests
+
+
+# - title: Open Source Projects
+#   type: time_table
+#   contents:
+#     - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
+#       year: 2015-now
+#       description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+
+- title: Skills
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - <u>Machine Learning and Deep Learning:</u> Scikit-Learn, Pytorch, Keras, Spacy, HuggingFace, Gensim, NLTK, BERT, OpenAI, Azure Cognitive Services, etc.
+    - <u>MLOps:</u> FastAPI, Kubernetes, Docker, GitLab CI/CD, Typer, Pydentic, Poetry, etc.
+    - <u>Cloud:</u> Azure, AzureML, Azure DevOps, AWS, AWS ECS, AWS EKS, AWS ElasticBeanstalk, AWS Sagemaker, AWS RDS, AWS Aurora, etc.
+    - <u>Databases:</u> MySQL, PostgreSQL, HDFS, ElasticSearch, and MongoDB.
+    - <u>Data Analysis:</u> Python (Jupyter Notebook, Pandas, NumPy, StatsModels, etc), Scala, SQL, Spark, PySpark, Hadoop, Hive, Impala, Excel, etc.
+    - <u>Data Visualization:</u> Matplotlib, Seaborn, Plotly, Streamlit, Grafana, Gephi, QGis, etc.
+    - <u>Other computer skills:</u> Java, C++, and Bash.
+    - <u>Operating systems:</u> Linux (Arch Linux, Debian, and Ubuntu), MacOS, and Windows.
+    - <u>Languages:</u> Italian (native), Portuguese (fluent), and English (fluent).
+
+- title: Pubblications
+  type: list
+  contents:
+  - Felipe G. Operti et al. Dynamics of racial segregation and gentrification in New York City. Frontiers in Physics. 2022.
+  - Felipe G. Operti et al. Dynamics in the Fitness-Income plane. Brazilian states vs World countries. PlosOne. 2018.
+  - Felipe G.Operti et al. The light pollution as a surrogate for urban population of the US cities. Physica A. 2018.

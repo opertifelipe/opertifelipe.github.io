@@ -9,11 +9,11 @@ profile:
   image: io.jpg
   image_circular: false # crops the image to make it circular
   address: >
-    <p>Lat: 45° 4' 30.2082</p>
-    <p>Lon: 7° 40' 38.4924</p>
+    <p>Lat: N 45° 4' 30.2082</p>
+    <p>Lon: E 7° 40' 38.4924</p>
     <p>Torino, Italy</p>
 
-news: true  #  includes a list of news items
+news: false  #  includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---

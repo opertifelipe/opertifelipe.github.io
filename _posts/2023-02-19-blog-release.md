@@ -6,4 +6,3 @@ description: Realising a static website
 categories: blog jekyll
 giscus_comments: false
 ---
-This post shows how to add GISCUS comments.

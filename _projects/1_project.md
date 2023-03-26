@@ -1,80 +1,20 @@
 ---
 layout: page
-title: project 1
-description: a project with a background image
-img: assets/img/12.jpg
+title: HonAI
+description: Machine leraning for honey production
+img: assets/img/bee.jpg
 importance: 1
 category: work
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+HonAI is an innovative machine learning project aimed at developing an accurate and efficient model for the prediction of honey production from bees. Predicting the production of honey has been a challenge for beekeepers for a long time, as it is influenced by numerous factors such as climate, weather, location, and the overall health of the bees. Accurate prediction of honey production is crucial for beekeepers to plan their activities, optimize production, and ensure the health and wellbeing of the bees.
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+Traditionally, beekeepers have relied on manual observations and experience to predict honey production. However, this approach is limited in its accuracy and reliability, and often fails to account for the complexity of the environmental factors that influence honey production. This is where the power of artificial intelligence comes in, as it can analyze large amounts of data and identify patterns that are difficult or impossible to discern by human observation.
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+The HonAI project uses a machine learning approach to develop a predictive model for honey production. The model is trained on a vast dataset of historical honey production data, along with environmental and climatic variables such as temperature, location, and humidity. The model leverages advanced algorithms to identify complex relationships between these variables and honey production, allowing it to make highly accurate predictions.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+The results of the HonAI project have been impressive, with the model demonstrating a high level of accuracy in predicting honey production. This level of accuracy allows beekeepers to make informed decisions about their production, plan their activities more effectively, and ensure the health and wellbeing of their bees.
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, *bled* for your project, and then... you reveal its glory in the next row of images.
+The HonAI project is a significant step forward in the field of honey production, and its success has the potential to revolutionize the way beekeeping is done. By leveraging the power of artificial intelligence, beekeepers can improve their yields, optimize production, and ensure the health and wellbeing of their bees. The HonAI project demonstrates the potential of artificial intelligence to transform traditional industries and bring about positive change for the environment and society.
 
-
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
-
-
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
-
-{% raw %}
-```html
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-```
-{% endraw %}
+For further information about the product, please contact: [https://www.fraleanalitica.it/](https://www.fraleanalitica.it/)

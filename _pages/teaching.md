@@ -2,11 +2,9 @@
 layout: page
 permalink: /contacts/
 title: contacts
-description: Materials for courses you taught. Replace this text with your description.
+description: 
 nav: true
 nav_order: 5
 ---
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
-
-Organize your courses by years, topics, or universities, however you like!
+If you want to collaborate, or if you want to share new ideas, or if you want to simply drink a beer, please contact me at: [operti.felipe@gmail.com](operti.felipe@gmail.com).
