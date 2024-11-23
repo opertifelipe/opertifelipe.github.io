@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <i>Data Scientist Specialist</i> | <i>Machine Learning Engineer</i> | <i>Software Engineer</i> 
+subtitle: <i>Full Stack Data Scientist</i>
 
 profile:
   align: right
@@ -18,8 +18,4 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-As a Data Scientist Specialist, I have extensive experience in leveraging cutting-edge technologies such as Natural Language Processing (NLP) and Deep Learning models to extract insights from complex data sets. My expertise includes designing, developing, and deploying advanced data science solutions that drive business outcomes.
-
-I have worked extensively with AWS cloud infrastructure, Azure, and other cloud platforms, using technologies such as Docker, Kubernetes, and FastAPI. With a Ph.D. in Physics, Complex Systems, I have a strong foundation in computational analysis for socio-economic sciences. My skills include data analysis, software engineering, machine learning, and deep learning. With experience in various domains such as finance, retail, and CRM. My experience includes leading end-to-end projects with teams composed of data engineers, data scientists, and machine learning engineers.
-
-I am also proud to hold dual citizenship in Italy and Brazil, which enables me to offer a unique perspective on global data science challenges and opportunities. I am committed to delivering innovative solutions that drive business outcomes, and I am excited to collaborate with dynamic organizations that share my passion for data science and innovation.
+Full Stack Data Scientist with extensive expertise in Natural Language Processing (NLP), Deep Learning, and Generative AI. Experienced in designing, developing, and deploying advanced artificial intelligence solutions that drive business outcomes. Proficient with Azure and AWS cloud services, utilizing technologies like Docker, Kubernetes, and FastAPI. I hold a Ph.D. in Physics of Complex Systems, with research focused on computational analysis for socio-economic sciences. Skill set includes natural language processing, generative AI, deep learning, machine learning, software engineering, and data analysis. Worked across various domains such as insurance, banking, technology, and retail. Led end-to-end projects with teams of data engineers, data scientists, and machine learning engineers. Committed to delivering innovative AI solutions and excited to collaborate with organizations that share a passion for artificial intelligence and technology.
