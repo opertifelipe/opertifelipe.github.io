@@ -24,16 +24,16 @@ The HonAI project is a significant step forward in the field of honey production
 
 Here we delves into the core technical structure of our Machine Learning system designed to optimize honey production. This system leverages advanced AI models deployed in a cloud-native environment, enabling precise predictions and actionable insights for beekeepers. By utilizing Azure's robust ecosystem, including Azure Container Apps and Azure SQL, this architecture ensures scalability, efficiency, and seamless integration of predictive analytics with operational workflows. This chapter explores how the components work together to deliver data-driven decision-making, providing a resilient and modern solution for sustainable honey production.
 
-
-
-![Bee](assets/img/batch_honai.jpg)
-*High-level architecture of the Machine Learning pipeline for honey production, showcasing data flow from hive sensors to Azure Container Apps for model predictions and integration with Azure SQL for data storage.*
-
-
-
-![Bee](assets/img/api_honai.jpg)
-*Overview of the API infrastructure, illustrating the flow of data from Azure SQL through an API hosted in Azure Container Apps, with integration for visualization in Grafana and data feedback from external systems.*
-
+{% raw %}
+<div class="row justify-content-sm-center">
+  <div class="col-sm-8 mt-3 mt-md-0">
+    {% include figure.liquid path="assets/batch_honai.jpg" title="High-level architecture of the Machine Learning pipeline for honey production, showcasing data flow from hive sensors to Azure Container Apps for model predictions and integration with Azure SQL for data storage." class="img-fluid rounded z-depth-1" %}
+  </div>
+  <div class="col-sm-4 mt-3 mt-md-0">
+    {% include figure.liquid path="assets/img/api_honai.jpg" title="Overview of the API infrastructure, illustrating the flow of data from Azure SQL through an API hosted in Azure Container Apps, with integration for visualization in Grafana and data feedback from external systems." class="img-fluid rounded z-depth-1" %}
+  </div>
+</div>
+{% endraw %}
 
 ## Contacts
 
