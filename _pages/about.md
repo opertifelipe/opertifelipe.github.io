@@ -18,8 +18,8 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am a Full Stack Data Scientist with extensive expertise in Natural Language Processing (NLP), Deep Learning, and Generative AI. Holding a Ph.D. in Physics of Complex Systems, my research focused on computational analysis in socio-economic sciences. I specialize in designing, developing, and deploying advanced AI solutions that drive measurable business outcomes.
+As a Full Stack Data Scientist, I have an extensive expertise in Natural Language Processing (NLP) and Deep Learning. My skills include designing, developing, and deploying advanced artificial intelligence solutions that drive business outcomes. 
 
-Proficient in Azure and AWS cloud services, I utilize technologies like Docker, Kubernetes, and FastAPI to build scalable and efficient applications. My skill set includes natural language processing, generative AI, deep learning, machine learning, software engineering, and data analysis.
+I have worked extensively with Azure cloud infrastructure and AWS, utilizing technologies such as Docker, Kubernetes, and FastAPI. I hold a Ph.D. in Physics of Complex Systems, with research focused on computational analysis for socio-economic sciences. My skill set includes natural language processing, generative ai, deep learning, machine learning, software engineering, and data analysis. 
 
-I have worked across diverse domains such as insurance, banking, technology, and retail. Leading end-to-end projects, I collaborate with teams of data engineers, data scientists, and machine learning engineers. I am committed to delivering innovative AI solutions and eager to partner with organizations that share a passion for artificial intelligence and technology.
+I have experience in various domains, including insurance, banking, technology, and retail. My background includes leading end-to-end projects with teams composed of data engineers, data scientists, and machine learning engineers. I am committed to delivering innovative solutions that drive business outcomes and am excited to collaborate with organizations that share my passion for artificial intelligence and technology.
