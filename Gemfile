@@ -13,9 +13,9 @@ group :jekyll_plugins do
     gem 'jekyll-link-attributes'
     gem 'jekyll-twitter-plugin'
     gem 'jemoji'
-    gem 'mini_racer', '0.6.2'
+    gem 'mini_racer'
     gem 'unicode_utils'
-    gem 'webrick'
+    gem 'webrick', '~> 1.7.0'
 end
 group :other_plugins do
     gem 'httparty'
