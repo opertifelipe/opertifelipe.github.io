@@ -65,14 +65,14 @@
         - Data Scientist Specialist in CRM area at Samsung SDS. Responsible for the development and deployment of propensity models, churn models, sentimental analysis, and RFV models.
         - <u>Technologies:</u> Data Lake, HDFS, Brightics, Adobe Campaign, Python, Scala, Docker, Spark, and PySpark.
 
-    - title: Senior Data Scientist
+    - title: Data Scientist
       institution: Santander Bank, Sao Paulo, Sao Paulo, Brazil 
       year: AUG 2019 - JUL 2020
       description:
         - Data Scientist in Santander DataLab. Data Lab is an innovative area whose aim is to develop large cross-areas end-to-end projects. Data Lab works as a consultancy society within the bank. In the lab, the interaction between product owners, data engineers, data scientists, and machine learning engineers is strongly encouraged. My responsibilities there are from one side to develop machine learning models (as data scientist consultant). Due to the heterogeneity sof the projects, also the applied machine learning and deep learning models are heterogeneous. On the other side, I am also responsible for checking the entire pipeline (from the ETL, the development of the models, and finally the deployment).
         - <u>Technologies:</u> Data Lake, Hadoop, Cloudera, Python, Scala, SQL, Hive, Impala, Spark, PySpark, and Oracle.
 
-    - title: Senior Data Scientist
+    - title: Data Scientist
       institution: Santander Bank, Sao Paulo, Sao Paulo, Brazil 
       year: DEC 2018 - AUG 2019
       description:
@@ -91,6 +91,7 @@
 - title: Skills
   type: list
   contents:
+    - <u>Generative AI:</u> Langchain, LangGraph, Azure Search, CrewAI, Unsloth, HuggingFace, OpenAI, etc.
     - <u>Machine Learning and Deep Learning:</u> Scikit-Learn, Pytorch, Keras, Spacy, HuggingFace, Gensim, NLTK, BERT, OpenAI, Azure Cognitive Services, etc.
     - <u>MLOps:</u> FastAPI, Kubernetes, Docker, GitLab CI/CD, Typer, Pydentic, Poetry, etc.
     - <u>Cloud:</u> Azure, AzureML, Azure DevOps, AWS, AWS ECS, AWS EKS, AWS ElasticBeanstalk, AWS Sagemaker, AWS RDS, AWS Aurora, etc.

@@ -1,7 +1,7 @@
 ---
 layout: page
-title: HonAI
-description: Machine learning for honey production
+title: Naima Lab
+description: Machine leraning for honey production
 img: assets/img/bee.jpg
 importance: 1
 category: work
