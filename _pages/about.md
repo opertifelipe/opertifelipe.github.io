@@ -18,7 +18,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-As a Full Stack Data Scientist, I have an extensive expertise in Natural Language Processing (NLP) and Deep Learning. My skills include designing, developing, and deploying advanced artificial intelligence solutions that drive business outcomes. 
+I have an extensive expertise in Natural Language Processing (NLP) and Deep Learning. My skills include designing, developing, and deploying advanced artificial intelligence solutions that drive business outcomes. 
 
 I have worked extensively with Azure cloud infrastructure and AWS, utilizing technologies such as Docker, Kubernetes, and FastAPI. I hold a Ph.D. in Physics of Complex Systems, with research focused on computational analysis for socio-economic sciences. My skill set includes natural language processing, generative ai, deep learning, machine learning, software engineering, and data analysis. 
 

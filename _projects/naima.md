@@ -1,42 +1,52 @@
 ---
 layout: page
 title: Naima Lab
-description: Machine leraning for honey production
-img: assets/img/bee.jpg
-importance: 1
+description: Prototype for Language Model Fine-Tuning and Optimization
+img: assets/img/naima.png
+importance: 2
 category: work
 ---
 
 ## Description
 
-HonAI is an innovative machine learning project aimed at developing an accurate and efficient model for the prediction of honey production from bees. Predicting the production of honey has been a challenge for beekeepers for a long time, as it is influenced by numerous factors such as climate, weather, location, and the overall health of the bees. Accurate prediction of honey production is crucial for beekeepers to plan their activities, optimize production, and ensure the health and wellbeing of the bees.
+Naima Lab is a cutting-edge prototype designed to explore and demonstrate the fine-tuning and optimization of large language models (LLMs) for various natural language processing (NLP) tasks. This project serves as a proof of concept, showcasing the integration of state-of-the-art tools and techniques to streamline the process of adapting pre-trained language models to specific use cases. While still in its early stages, Naima Lab provides a robust foundation for experimenting with advanced NLP workflows and methodologies.
 
-Traditionally, beekeepers have relied on manual observations and experience to predict honey production. However, this approach is limited in its accuracy and reliability, and often fails to account for the complexity of the environmental factors that influence honey production. This is where the power of artificial intelligence comes in, as it can analyze large amounts of data and identify patterns that are difficult or impossible to discern by human observation.
+## Key Features
 
-The HonAI project uses a machine learning approach to develop a predictive model for honey production. The model is trained on a vast dataset of historical honey production data, along with environmental and climatic variables such as temperature, location, and humidity. The model leverages advanced algorithms to identify complex relationships between these variables and honey production, allowing it to make highly accurate predictions.
+1. **Fine-Tuning Large Language Models**  
+   Naima Lab enables users to fine-tune pre-trained LLMs, such as Qwen, Llama, and Phi models, using custom datasets. The project leverages advanced frameworks like Hugging Face Transformers and Unsloth to optimize the training process, ensuring efficient resource utilization and high-quality results.
 
-The results of the HonAI project have been impressive, with the model demonstrating a high level of accuracy in predicting honey production. This level of accuracy allows beekeepers to make informed decisions about their production, plan their activities more effectively, and ensure the health and wellbeing of their bees.
+2. **Configurable Training Pipelines**  
+   The project supports highly customizable training pipelines through YAML configuration files. Users can define parameters such as model architecture, sequence length, learning rate, batch size, and evaluation strategies, making it easy to adapt the prototype to different tasks and datasets.
 
-The HonAI project is a significant step forward in the field of honey production, and its success has the potential to revolutionize the way beekeeping is done. By leveraging the power of artificial intelligence, beekeepers can improve their yields, optimize production, and ensure the health and wellbeing of their bees. The HonAI project demonstrates the potential of artificial intelligence to transform traditional industries and bring about positive change for the environment and society.
+3. **Support for Lightweight Training**  
+   Naima Lab incorporates techniques like 4-bit quantization and LoRA (Low-Rank Adaptation) to reduce memory usage and computational overhead during training. These optimizations make it possible to fine-tune large models on resource-constrained hardware.
 
+4. **Dataset Preparation and Standardization**  
+   The prototype includes utilities for preparing and standardizing datasets, ensuring compatibility with the fine-tuning process. It supports conversational datasets, such as ShareGPT-style data, and provides tools for formatting prompts and responses.
 
-## Architecture
+5. **Integration with Popular Frameworks**  
+   Naima Lab integrates seamlessly with popular NLP frameworks like LangChain and Hugging Face, allowing users to leverage pre-built components for tasks such as embeddings generation, chat-based interactions, and zero-shot classification.
 
-Here we delves into the core technical structure of our Machine Learning system designed to optimize honey production. This system leverages advanced AI models deployed in a cloud-native environment, enabling precise predictions and actionable insights for beekeepers. By utilizing Azure's robust ecosystem, including Azure Container Apps and Azure SQL, this architecture ensures scalability, efficiency, and seamless integration of predictive analytics with operational workflows. This chapter explores how the components work together to deliver data-driven decision-making, providing a resilient and modern solution for sustainable honey production.
+6. **Command-Line Interface (CLI)**  
+   The project features a user-friendly CLI built with Typer, enabling users to execute fine-tuning workflows with simple commands. This interface abstracts the complexity of the underlying code, making it accessible to both researchers and developers.
 
-![Batch](/assets/img/batch_honai.jpg)
+7. **Prototype-Only Scope**  
+   As a prototype, Naima Lab is not intended for production use. Instead, it serves as a sandbox for experimenting with LLM fine-tuning techniques, providing valuable insights and learnings for future development.
 
+## Use Cases
 
-*High-level architecture of the Machine Learning pipeline for honey production, showcasing data flow from hive sensors to Azure Container Apps for model predictions and integration with Azure SQL for data storage.*
+- **Custom Chatbots**: Fine-tune LLMs to create domain-specific conversational agents capable of understanding and responding to user queries with high accuracy.
+- **Text Classification**: Adapt pre-trained models for tasks like sentiment analysis, topic classification, and intent detection.
+- **Content Generation**: Train models to generate high-quality text for applications such as marketing, education, and creative writing.
+- **Research and Experimentation**: Serve as a platform for exploring new techniques in LLM fine-tuning and optimization.
 
-![API](/assets/img/api_honai.jpg)
+## Limitations
 
+As a prototype, Naima Lab is not optimized for large-scale production deployments. It is designed for experimentation and learning, and users may encounter limitations in scalability, performance, and feature completeness. Future iterations of the project may address these limitations based on feedback and insights gained during this phase.
 
-*Overview of the API infrastructure, illustrating the flow of data from Azure SQL through an API hosted in Azure Container Apps, with integration for visualization in Grafana and data feedback from external systems.*
+## Conclusion
 
+Naima Lab represents an exciting step forward in the field of NLP, providing a flexible and powerful platform for fine-tuning large language models. While it is currently a prototype, the project demonstrates the potential of combining state-of-the-art tools and techniques to unlock new possibilities in language model customization and application. Whether you're a researcher, developer, or enthusiast, Naima Lab offers a glimpse into the future of NLP innovation.
 
-## Contacts
-
-For further information about the product, please contact: [https://www.fraleanalitica.it/](https://www.fraleanalitica.it/)
-
-
+[Github](https://github.com/opertifelipe/naima-lab)
