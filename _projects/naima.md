@@ -2,7 +2,7 @@
 layout: page
 title: Naima Lab
 description: Prototype for Language Model Fine-Tuning and Optimization
-img: assets/img/naima.png
+img: assets/img/naima.jpg
 importance: 2
 category: work
 ---
