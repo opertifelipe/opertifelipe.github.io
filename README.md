@@ -2,7 +2,7 @@
 
 Felipe Operti's personal website, built with Astro and published on GitHub Pages.
 
-The site has a single interface: a black-and-white, Bash-like CLI running as `felipe@galileo`. Visitors can type commands or click the names printed by the terminal. Markdown documents are rendered inline by `less`, including full-colour images, and can be downloaded directly from the rendered view.
+The site has a single interface: a black-and-white, Bash-like CLI running as `felipe@galileo`. Visitors can type commands or click the names printed by the terminal. Markdown documents are rendered inline by `cat`, including full-colour images, and can be downloaded directly from the rendered view.
 
 ## Virtual filesystem
 
@@ -25,9 +25,9 @@ The site has a single interface: a black-and-white, Bash-like CLI running as `fe
 
 The home directory is listed in this deliberate order: About, CV, projects, blog, contacts and Why.
 
-The main commands are `help`, `ls`, `cd`, `pwd`, `cat`, `less`, `open`, `tree`, `file`, `download`, `history` and `clear`.
+The main commands are `help`, `ls`, `cd`, `pwd`, `cat`, `open`, `tree`, `file`, `download`, `history` and `clear`.
 
-- `less file.md` renders Markdown and its images inside the terminal.
+- `cat file.md` renders Markdown and its images inside the terminal.
 - `download file.md` downloads the Markdown source; the same action is available as a clickable button in the rendered document.
 - `download Felipe_Operti_CV.pdf` downloads the CV.
 - `cd path` changes directory without resetting the output. Bare `cd` and `clear` restore the landing screen.
@@ -68,7 +68,7 @@ draft: false
 Article content starts here.
 ~~~
 
-Published articles automatically appear as `.md` files inside `~/blog`. They can be read with `less YYYY-MM-DD-article-title.md` or downloaded with `download YYYY-MM-DD-article-title.md`.
+Published articles automatically appear as `.md` files inside `~/blog`. They can be read with `cat YYYY-MM-DD-article-title.md` or downloaded with `download YYYY-MM-DD-article-title.md`.
 
 ## Deployment
 

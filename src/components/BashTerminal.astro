@@ -99,7 +99,7 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
   }
 
   const HOME = '/home/felipe';
-  const commands = ['help', 'man', 'ls', 'cd', 'pwd', 'cat', 'less', 'open', 'xdg-open', 'tree', 'file', 'download', 'whoami', 'history', 'clear', 'date', 'uname', 'echo'];
+  const commands = ['help', 'man', 'ls', 'cd', 'pwd', 'cat', 'open', 'xdg-open', 'tree', 'file', 'download', 'whoami', 'history', 'clear', 'date', 'uname', 'echo'];
   const documents = JSON.parse(documentsData.textContent || '[]') as TerminalDocument[];
   const documentMap = new Map(documents.map((document) => [document.path, document]));
   const commandHistory: string[] = [];
@@ -223,7 +223,7 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
     if (entry.type === 'directory') return 'cd ' + target;
     if (entry.type === 'image') return 'open ' + target;
     if (entry.type === 'pdf') return 'download ' + target;
-    return 'less ' + target;
+    return 'cat ' + target;
   };
 
   const listDirectory = (path: string, longFormat: boolean, sortByTime: boolean) => {
@@ -273,8 +273,7 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
         '<p>Available commands:</p><dl>' +
         '<div><dt>' + commandButton('ls [-la] [path]', 'ls') + '</dt><dd>list files and directories</dd></div>' +
         '<div><dt>' + commandButton('cd [path]', 'cd') + '</dt><dd>change the current directory</dd></div>' +
-        '<div><dt>less file.md</dt><dd>render Markdown, including images, in the terminal</dd></div>' +
-        '<div><dt>cat file.md</dt><dd>render a Markdown file in the terminal</dd></div>' +
+        '<div><dt>cat file.md</dt><dd>render Markdown, including images, in the terminal</dd></div>' +
         '<div><dt>open image.webp</dt><dd>display a colour image</dd></div>' +
         '<div><dt>download file</dt><dd>download a Markdown document or PDF</dd></div>' +
         '<div><dt>' + commandButton('tree [path]', 'tree') + '</dt><dd>show the virtual filesystem</dd></div>' +
@@ -300,14 +299,14 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
     window.scrollTo({ top: 0 });
   };
 
-  const renderMarkdown = (entry: Entry, path: string, command: 'cat' | 'less') => {
+  const renderMarkdown = (entry: Entry, path: string) => {
     if (!entry.documentPath) {
-      error(command + ': ' + displayPath(path) + ': Cannot read document');
+      error('cat: ' + displayPath(path) + ': Cannot read document');
       return;
     }
     const document = documentMap.get(entry.documentPath);
     if (!document) {
-      error(command + ': ' + displayPath(path) + ': Cannot read document');
+      error('cat: ' + displayPath(path) + ': Cannot read document');
       return;
     }
     appendHtml(
@@ -315,33 +314,42 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
         '<p class="document-path">' + escapeHtml(displayPath(path)) + ' · ' +
           commandButton('[download]', 'download ' + displayPath(path)) + '</p>' +
         document.html +
-        (command === 'less' ? '<p class="document-end">(END)</p>' : '') +
       '</article>',
     );
   };
 
-  const readFile = (path: string, command: 'cat' | 'less') => {
+  const readFile = (path: string) => {
     const normalized = normalizePath(path);
     const entry = getEntry(normalized);
     if (!entry) {
-      error(command + ': ' + path + ': No such file or directory');
+      error('cat: ' + path + ': No such file or directory');
       return;
     }
     if (entry.type === 'directory') {
-      error(command + ': ' + path + ': Is a directory');
+      error('cat: ' + path + ': Is a directory');
       return;
     }
-    if (entry.type === 'image') {
-      if (command === 'less') openImage(normalized);
-      else error('cat: ' + path + ': Binary file');
+    if (entry.type === 'image' || entry.type === 'pdf') {
+      error('cat: ' + path + ': Binary file');
       return;
     }
-    if (entry.type === 'pdf') {
-      if (command === 'less' && entry.source) window.location.assign(entry.source);
-      else error('cat: ' + path + ': Binary file');
-      return;
+    renderMarkdown(entry, normalized);
+  };
+
+  const openFile = (path: string) => {
+    const normalized = normalizePath(path);
+    const entry = getEntry(normalized);
+    if (!entry) {
+      error('open: ' + path + ': No such file or directory');
+    } else if (entry.type === 'directory') {
+      error('open: ' + path + ': Is a directory');
+    } else if (entry.type === 'image') {
+      openImage(normalized);
+    } else if (entry.type === 'pdf' && entry.source) {
+      window.location.assign(entry.source);
+    } else {
+      renderMarkdown(entry, normalized);
     }
-    renderMarkdown(entry, normalized, command);
   };
 
   const openImage = (path: string) => {
@@ -452,15 +460,13 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
         changeDirectory(tokens[0]);
         break;
       case 'cat':
-      case 'less':
         if (!tokens[0]) error(command + ': missing file operand');
-        else readFile(tokens[0], command);
+        else readFile(tokens[0]);
         break;
       case 'open':
       case 'xdg-open':
         if (!tokens[0]) error(command + ': missing file operand');
-        else if (getEntry(normalizePath(tokens[0]))?.type === 'image') openImage(tokens[0]);
-        else readFile(tokens[0], 'less');
+        else openFile(tokens[0]);
         break;
       case 'tree':
         renderTree(tokens[0] || '.');
@@ -738,8 +744,7 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
   .terminal-output :global(.entry-date),
   .terminal-output :global(.hint-line),
   .terminal-output :global(.completion-list),
-  .terminal-output :global(.document-path),
-  .terminal-output :global(.document-end) {
+  .terminal-output :global(.document-path) {
     color: var(--muted);
   }
 
