@@ -2,22 +2,36 @@
 
 Felipe Operti's personal website, built with Astro and published on GitHub Pages.
 
-The site has a single interface: a monochrome, Bash-like CLI. Visitors can type commands or click the names printed by the terminal. Markdown documents are rendered inline by `less`, including full-colour images.
+The site has a single interface: a black-and-white, Bash-like CLI running as `felipe@galileo`. Visitors can type commands or click the names printed by the terminal. Markdown documents are rendered inline by `less`, including full-colour images, and can be downloaded directly from the rendered view.
 
 ## Virtual filesystem
 
 ~~~text
 ~
 ├── about.md
-├── blog/
-├── contacts.md
 ├── cv/
+│   ├── README.md
+│   └── Felipe_Operti_CV.pdf
 ├── projects/
 │   └── honai/
+│       ├── README.md
+│       └── images/
+├── blog/
+│   ├── README.md
+│   └── YYYY-MM-DD-article-title.md
+├── contacts.md
 └── why.md
 ~~~
 
-The main commands are `help`, `ls`, `cd`, `pwd`, `cat`, `less`, `open`, `tree`, `file`, `download`, `history` and `clear`. Markdown documents and the CV PDF can be downloaded with `download`. Tab completes commands and paths; arrow keys recall command history.
+The home directory is listed in this deliberate order: About, CV, projects, blog, contacts and Why.
+
+The main commands are `help`, `ls`, `cd`, `pwd`, `cat`, `less`, `open`, `tree`, `file`, `download`, `history` and `clear`.
+
+- `less file.md` renders Markdown and its images inside the terminal.
+- `download file.md` downloads the Markdown source; the same action is available as a clickable button in the rendered document.
+- `download Felipe_Operti_CV.pdf` downloads the CV.
+- `cd path` changes directory without resetting the output. Bare `cd` and `clear` restore the landing screen.
+- Tab completes commands and paths; arrow keys recall command history.
 
 ## Local development
 
@@ -37,7 +51,7 @@ npm run preview
 
 ## Content
 
-The terminal documents live in `src/data/terminal`. About, contacts, CV, the HonAI project and the blog introduction are ordinary Markdown files.
+The terminal documents live in `src/data/terminal`. About, Why, contacts, CV, the HonAI project and the blog introduction are ordinary Markdown files. `why.md` explains the Linux and open-source inspiration behind the interface.
 
 To publish an article, create a date-prefixed Markdown file such as `YYYY-MM-DD-article-title.md` in `src/data/blog`:
 
@@ -54,7 +68,7 @@ draft: false
 Article content starts here.
 ~~~
 
-Published articles automatically appear as `.md` files inside `~/blog` and can be read with `less article-name.md`.
+Published articles automatically appear as `.md` files inside `~/blog`. They can be read with `less YYYY-MM-DD-article-title.md` or downloaded with `download YYYY-MM-DD-article-title.md`.
 
 ## Deployment
 
