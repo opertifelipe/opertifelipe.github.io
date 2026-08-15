@@ -277,15 +277,20 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
     }
   };
 
+  const setSidebar = (isOpen: boolean) => {
+    shell.dataset.sidebar = isOpen ? 'open' : 'closed';
+    sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+    sidebarToggle.title = isOpen ? 'Close explorer sidebar' : 'Open explorer sidebar';
+  };
+
+  if (window.matchMedia('(max-width: 760px)').matches) setSidebar(false);
+
   switchButton.addEventListener('click', () => {
     setMode(shell.dataset.mode === 'explorer' ? 'terminal' : 'explorer');
   });
 
   sidebarToggle.addEventListener('click', () => {
-    const isOpen = shell.dataset.sidebar === 'open';
-    shell.dataset.sidebar = isOpen ? 'closed' : 'open';
-    sidebarToggle.setAttribute('aria-expanded', String(!isOpen));
-    sidebarToggle.title = isOpen ? 'Open explorer sidebar' : 'Close explorer sidebar';
+    setSidebar(shell.dataset.sidebar !== 'open');
   });
 
   treeContainer.addEventListener('click', (event) => {
@@ -678,28 +683,40 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
 
   @media (max-width: 760px) {
     .explorer-view {
+      display: block;
       min-height: 100svh;
-      grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: auto minmax(0, 1fr);
     }
 
     .explorer-sidebar {
-      position: relative;
+      position: fixed;
+      z-index: 15;
       top: 0;
-      width: 100%;
-      height: auto;
-      max-height: 42svh;
-      border-right: 0;
-      border-bottom: 1px solid var(--line);
+      bottom: 0;
+      left: 0;
+      width: min(82vw, 21rem);
+      height: 100svh;
+      max-height: none;
+      border-right: 1px solid var(--line);
+      border-bottom: 0;
     }
 
-    .portfolio-shell[data-sidebar='closed'] .explorer-view {
-      grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: 0 minmax(0, 1fr);
+    .sidebar-toggle {
+      position: fixed;
+      top: 0.7rem;
+      right: auto;
+      left: calc(min(82vw, 21rem) - 2.8rem);
+    }
+
+    .portfolio-shell[data-sidebar='closed'] .explorer-sidebar {
+      width: 0;
+    }
+
+    .portfolio-shell[data-sidebar='closed'] .sidebar-toggle {
+      left: 0.7rem;
     }
 
     .explorer-landing {
-      min-height: 58svh;
+      min-height: 100svh;
     }
 
     .explorer-content :global(.explorer-path) {
