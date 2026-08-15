@@ -19,7 +19,7 @@ const { documents = [] } = Astro.props;
 const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c');
 ---
 
-<section class="portfolio-shell" data-portfolio-shell data-mode="explorer" data-sidebar="open">
+<section class="portfolio-shell" data-portfolio-shell data-mode="explorer" data-sidebar="closed">
   <button
     class="mode-switch"
     type="button"
@@ -43,8 +43,8 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
         type="button"
         data-sidebar-toggle
         aria-controls="explorer-sidebar"
-        aria-expanded="true"
-        title="Close explorer sidebar"
+        aria-expanded="false"
+        title="Open explorer sidebar"
       >
         <span class="sidebar-toggle-open" aria-hidden="true">&lt;</span>
         <span class="sidebar-toggle-closed" aria-hidden="true">&gt;</span>
@@ -64,6 +64,8 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
         </header>
       </div>
     </div>
+
+    <p class="explorer-hint">press <button type="button" data-sidebar-open>sidebar</button> to explore files</p>
   </div>
 
   <div class="terminal-view" data-terminal-view hidden>
@@ -101,13 +103,14 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
   const shell = document.querySelector<HTMLElement>('[data-portfolio-shell]');
   const switchButton = document.querySelector<HTMLButtonElement>('[data-mode-switch]');
   const sidebarToggle = document.querySelector<HTMLButtonElement>('[data-sidebar-toggle]');
+  const sidebarOpen = document.querySelector<HTMLButtonElement>('[data-sidebar-open]');
   const explorerView = document.querySelector<HTMLElement>('[data-explorer-view]');
   const terminalView = document.querySelector<HTMLElement>('[data-terminal-view]');
   const treeContainer = document.querySelector<HTMLElement>('[data-file-tree]');
   const explorerContent = document.querySelector<HTMLElement>('[data-explorer-content]');
   const documentsData = document.querySelector<HTMLScriptElement>('#explorer-documents');
 
-  if (!shell || !switchButton || !sidebarToggle || !explorerView || !terminalView || !treeContainer || !explorerContent || !documentsData) {
+  if (!shell || !switchButton || !sidebarToggle || !sidebarOpen || !explorerView || !terminalView || !treeContainer || !explorerContent || !documentsData) {
     throw new Error('Portfolio shell could not be initialized.');
   }
 
@@ -283,7 +286,7 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
     sidebarToggle.title = isOpen ? 'Close explorer sidebar' : 'Open explorer sidebar';
   };
 
-  if (window.matchMedia('(max-width: 760px)').matches) setSidebar(false);
+  setSidebar(false);
 
   switchButton.addEventListener('click', () => {
     setMode(shell.dataset.mode === 'explorer' ? 'terminal' : 'explorer');
@@ -292,6 +295,8 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
   sidebarToggle.addEventListener('click', () => {
     setSidebar(shell.dataset.sidebar !== 'open');
   });
+
+  sidebarOpen.addEventListener('click', () => setSidebar(true));
 
   treeContainer.addEventListener('click', (event) => {
     const target = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-explorer-path]');
@@ -440,6 +445,33 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
 
   .portfolio-shell[data-sidebar='closed'] .sidebar-toggle-closed {
     display: inline;
+  }
+
+  .explorer-hint {
+    position: fixed;
+    z-index: 5;
+    bottom: 0.5rem;
+    left: 50%;
+    margin: 0;
+    transform: translateX(-50%);
+    color: #666;
+    font-size: clamp(0.72rem, 1.2vw, 0.86rem);
+    white-space: nowrap;
+  }
+
+  .explorer-hint button {
+    padding: 0;
+    border: 0;
+    color: #999;
+    background: transparent;
+    font: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    cursor: pointer;
+  }
+
+  .portfolio-shell[data-sidebar='open'] .explorer-hint {
+    display: none;
   }
 
   .explorer-heading {
