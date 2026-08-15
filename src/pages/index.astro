@@ -4,13 +4,13 @@ import { marked } from 'marked';
 import PortfolioShell from '../components/PortfolioShell.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const terminalDocuments = await getCollection('terminal');
+const staticDocuments = await getCollection('documents');
 const blogPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
 );
 
 const documents = await Promise.all([
-  ...terminalDocuments.map(async (document) => ({
+  ...staticDocuments.map(async (document) => ({
     path: document.data.path,
     title: document.data.title,
     description: document.data.description,

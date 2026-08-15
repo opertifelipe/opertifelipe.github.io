@@ -65,7 +65,7 @@ Developed supervised and unsupervised models for propensity, churn, segmentation
 ### PhD in Physics, Complex Systems
 
 Federal University of Ceará · 2015–2018  
-Thesis: *Computational analysis for socio-economic sciences.*
+Thesis: *Computational analysis for socio-economic sciences.* — [Read thesis](https://repositorio.ufc.br/bitstream/riufc/38706/3/2018_tese_fgoperti.pdf)
 
 ### Visiting PhD, Complex Systems
 
@@ -75,7 +75,7 @@ Thesis: *Computational analysis for socio-economic sciences.*
 ### MSc in Physics, Complex Systems
 
 Federal University of Ceará · 2014–2015  
-Thesis: *Interpolation strategy based on Dynamic Time Warping.*
+Thesis: *Interpolation strategy based on Dynamic Time Warping.* — [Read thesis](https://repositorio.ufc.br/bitstream/riufc/11446/1/2015_dis_fgoperti.pdf)
 
 ### BSc in Physics
 
@@ -93,6 +93,6 @@ University of Turin · 2009–2012
 
 ## Publications
 
-1. *Dynamics of racial segregation and gentrification in New York City.* Frontiers in Physics, 2022.
-2. *Dynamics in the Fitness-Income plane: Brazilian states vs World countries.* PLOS ONE, 2018.
-3. *The light pollution as a surrogate for urban population of the US cities.* Physica A, 2018.
+1. *Dynamics of racial segregation and gentrification in New York City.* Frontiers in Physics, 2022. — [Read paper](https://www.frontiersin.org/journals/physics/articles/10.3389/fphy.2021.777761/full)
+2. *Dynamics in the Fitness-Income plane: Brazilian states vs World countries.* PLOS ONE, 2018. — [Read paper](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0197616)
+3. *The light pollution as a surrogate for urban population of the US cities.* Physica A, 2018. — [Read paper](https://www.sciencedirect.com/science/article/pii/S0378437117311159)

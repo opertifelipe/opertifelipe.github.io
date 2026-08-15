@@ -132,7 +132,13 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
       markdownEntry('cv/README.md'),
       { name: 'Felipe_Operti_CV.pdf', type: 'pdf', source: '/Felipe_Operti_CV.pdf', description: 'Downloadable curriculum vitae.' },
     ],
-    [HOME + '/projects']: [{ name: 'honai', type: 'directory' }],
+    [HOME + '/projects']: [
+      { name: 'honai', type: 'directory' },
+      { name: 'aurora', type: 'directory' },
+      { name: 'trl', type: 'directory' },
+      { name: 'frontiers', type: 'directory' },
+      { name: 'stoccatori', type: 'directory' },
+    ],
     [HOME + '/projects/honai']: [
       markdownEntry('projects/honai/README.md'),
       { name: 'images', type: 'directory' },
@@ -142,6 +148,16 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
       { name: 'batch-architecture.webp', type: 'image', source: '/images/honai-batch.webp', description: 'HonAI batch prediction architecture.' },
       { name: 'api-architecture.webp', type: 'image', source: '/images/honai-api.webp', description: 'HonAI API and monitoring architecture.' },
     ],
+    [HOME + '/projects/aurora']: [
+      markdownEntry('projects/aurora/README.md'),
+      { name: 'images', type: 'directory' },
+    ],
+    [HOME + '/projects/aurora/images']: [
+      { name: 'aurora-dashboard.png', type: 'image', source: '/images/aurora-cover.png', description: 'Aurora personal finance assistant.' },
+    ],
+    [HOME + '/projects/trl']: [markdownEntry('projects/trl/README.md')],
+    [HOME + '/projects/frontiers']: [markdownEntry('projects/frontiers/README.md')],
+    [HOME + '/projects/stoccatori']: [markdownEntry('projects/stoccatori/README.md')],
     [HOME + '/blog']: [markdownEntry('blog/README.md')],
   };
 
@@ -822,7 +838,7 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
   }
 
   .terminal-output :global(.document-about img) {
-    width: min(50%, 30rem);
+    width: min(25%, 15rem);
   }
 
   .terminal-output :global(.help-output dl) {

@@ -28,8 +28,7 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
     title="Open terminal mode"
   >
     <svg class="mode-icon mode-icon--terminal" viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="2.5" y="3.5" width="19" height="17" rx="1"></rect>
-      <path d="m6 8 3 3-3 3M11 15h5"></path>
+      <path d="m4 7 5 5-5 5M12 17h7"></path>
     </svg>
     <svg class="mode-icon mode-icon--explorer" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M3 6.5h7l2 2h9v11H3zM3 6.5v-2h7l2 2"></path>
@@ -122,6 +121,7 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
     { path: 'projects/honai/images/bee.webp', type: 'image', source: '/images/honai-cover.webp', description: 'Bee collecting pollen from a flower' },
     { path: 'projects/honai/images/batch-architecture.webp', type: 'image', source: '/images/honai-batch.webp', description: 'HonAI batch prediction architecture' },
     { path: 'projects/honai/images/api-architecture.webp', type: 'image', source: '/images/honai-api.webp', description: 'HonAI API and monitoring architecture' },
+    { path: 'projects/aurora/images/aurora-dashboard.png', type: 'image', source: '/images/aurora-cover.png', description: 'Aurora personal finance assistant' },
   ];
   const fileMap = new Map(files.map((file) => [file.path, file]));
 
@@ -156,8 +156,11 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
   const terminalOrder: Record<string, string[]> = {
     '': ['about.md', 'cv', 'projects', 'blog', 'contacts.md', 'why.md'],
     cv: ['README.md', 'Felipe_Operti_CV.pdf'],
+    projects: ['honai', 'aurora', 'trl', 'frontiers', 'stoccatori'],
     'projects/honai': ['README.md', 'images'],
     'projects/honai/images': ['bee.webp', 'batch-architecture.webp', 'api-architecture.webp'],
+    'projects/aurora': ['README.md', 'images'],
+    'projects/aurora/images': ['aurora-dashboard.png'],
   };
 
   const orderedChildren = (node: TreeNode) => {
@@ -207,6 +210,7 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
   };
 
   const showLanding = (updateUrl = true) => {
+    delete shell.dataset.fileOpen;
     explorerContent.innerHTML = landingMarkup;
     treeContainer.querySelectorAll('[aria-current="page"]').forEach((item) => item.removeAttribute('aria-current'));
     if (updateUrl) updateFileUrl();
@@ -216,6 +220,7 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
   const showFile = (path: string, updateUrl = true) => {
     const file = fileMap.get(path);
     if (!file) return;
+    shell.dataset.fileOpen = 'true';
 
     const downloadAction = file.type === 'markdown'
       ? '<button type="button" data-explorer-download="' + escapeHtml(path) + '">[ download ]</button>'
@@ -300,7 +305,10 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
 
   treeContainer.addEventListener('click', (event) => {
     const target = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-explorer-path]');
-    if (target?.dataset.explorerPath) showFile(target.dataset.explorerPath);
+    if (target?.dataset.explorerPath) {
+      showFile(target.dataset.explorerPath);
+      if (window.matchMedia('(max-width: 760px)').matches) setSidebar(false);
+    }
   });
 
   explorerContent.addEventListener('click', (event) => {
@@ -397,6 +405,7 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
 
   .explorer-sidebar {
     position: sticky;
+    z-index: 3;
     top: clamp(0.75rem, 3vw, 2.5rem);
     height: calc(100svh - clamp(1.5rem, 6vw, 5rem));
     overflow: auto;
@@ -470,7 +479,8 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
     cursor: pointer;
   }
 
-  .portfolio-shell[data-sidebar='open'] .explorer-hint {
+  .portfolio-shell[data-sidebar='open'] .explorer-hint,
+  .portfolio-shell[data-file-open='true'] .explorer-hint {
     display: none;
   }
 
@@ -688,7 +698,7 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
   }
 
   .explorer-content :global(.explorer-document--about img) {
-    width: min(50%, 30rem);
+    width: min(25%, 15rem);
   }
 
   .explorer-content :global(.explorer-image),
@@ -752,7 +762,9 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
     }
 
     .explorer-content :global(.explorer-path) {
-      padding-right: 4rem;
+      align-items: flex-end;
+      padding: 4rem 1rem 0.8rem;
+      border-bottom: 0;
     }
   }
 </style>

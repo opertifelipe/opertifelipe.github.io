@@ -51,9 +51,9 @@ npm run preview
 
 ## Content
 
-The terminal documents live in `src/data/terminal`. About, Why, contacts, CV, the HonAI project and the blog introduction are ordinary Markdown files. `why.md` explains the Linux and open-source inspiration behind the interface.
+All site content lives under `src/data`. About, Why and contacts are top-level Markdown files, while CV, projects and blog content retain the same directory structure shown by the Explorer and Terminal.
 
-To publish an article, create a date-prefixed Markdown file such as `YYYY-MM-DD-article-title.md` in `src/data/blog`:
+To publish an article, create `src/data/blog/YYYY/MM/DD-article-title.md`, using the publication year and month as directories and the two-digit day in the filename:
 
 ~~~md
 ---
