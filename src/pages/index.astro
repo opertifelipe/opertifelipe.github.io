@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { marked } from 'marked';
-import BashTerminal from '../components/BashTerminal.astro';
+import PortfolioShell from '../components/PortfolioShell.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const terminalDocuments = await getCollection('terminal');
@@ -31,7 +31,7 @@ const documents = await Promise.all([
 
 <BaseLayout
   title="Felipe Operti"
-  description="Navigate Felipe Operti's work, CV and writing through an interactive Bash portfolio."
+  description="Explore Felipe Operti's work, CV and writing through a file explorer or interactive Bash terminal."
 >
-  <BashTerminal documents={documents} />
+  <PortfolioShell documents={documents} />
 </BaseLayout>

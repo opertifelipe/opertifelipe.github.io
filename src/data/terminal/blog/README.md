@@ -8,4 +8,4 @@ path: blog/README.md
 
 Long-form notes about AI systems, engineering decisions and ongoing experiments live in this directory.
 
-Use `ls -lt` to list published articles and `cat article-name.md` to render an article directly inside the terminal.
+Published articles are organised by year and month. Use `tree` to browse them and `cat year/month/day-article-title.md` to render an article directly inside the terminal.

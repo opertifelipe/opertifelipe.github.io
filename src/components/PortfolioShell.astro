@@ -1,0 +1,709 @@
+---
+import BashTerminal from './BashTerminal.astro';
+
+interface PortfolioDocument {
+  path: string;
+  title: string;
+  description: string;
+  html: string;
+  markdown: string;
+  modified?: string;
+  tags?: string[];
+}
+
+interface Props {
+  documents?: PortfolioDocument[];
+}
+
+const { documents = [] } = Astro.props;
+const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c');
+---
+
+<section class="portfolio-shell" data-portfolio-shell data-mode="explorer" data-sidebar="open">
+  <button
+    class="mode-switch"
+    type="button"
+    data-mode-switch
+    aria-label="Open terminal mode"
+    title="Open terminal mode"
+  >
+    <svg class="mode-icon mode-icon--terminal" viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="2.5" y="3.5" width="19" height="17" rx="1"></rect>
+      <path d="m6 8 3 3-3 3M11 15h5"></path>
+    </svg>
+    <svg class="mode-icon mode-icon--explorer" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M3 6.5h7l2 2h9v11H3zM3 6.5v-2h7l2 2"></path>
+    </svg>
+  </button>
+
+  <div class="explorer-view" data-explorer-view>
+    <aside id="explorer-sidebar" class="explorer-sidebar" aria-label="File explorer">
+      <button
+        class="sidebar-toggle"
+        type="button"
+        data-sidebar-toggle
+        aria-controls="explorer-sidebar"
+        aria-expanded="true"
+        title="Close explorer sidebar"
+      >
+        <span class="sidebar-toggle-open" aria-hidden="true">&lt;</span>
+        <span class="sidebar-toggle-closed" aria-hidden="true">&gt;</span>
+        <span class="sr-only">Toggle explorer sidebar</span>
+      </button>
+      <button class="explorer-heading" type="button" data-explorer-home>EXPLORER</button>
+      <nav class="file-tree" data-file-tree aria-label="Portfolio files"></nav>
+      <noscript>JavaScript is required to navigate the file explorer.</noscript>
+    </aside>
+
+    <div class="explorer-content" data-explorer-content aria-live="polite">
+      <div class="explorer-landing" data-explorer-landing>
+        <header>
+          <h1>Felipe Operti</h1>
+          <p>AI Architect and AI Engineer</p>
+          <p><a href="mailto:operti.felipe@gmail.com">operti.felipe@gmail.com</a></p>
+        </header>
+      </div>
+    </div>
+  </div>
+
+  <div class="terminal-view" data-terminal-view hidden>
+    <BashTerminal documents={documents} />
+  </div>
+</section>
+
+<script type="application/json" id="explorer-documents" set:html={serializedDocuments} is:inline></script>
+
+<script>
+  type FileType = 'markdown' | 'image' | 'pdf';
+
+  interface PortfolioDocument {
+    path: string;
+    title: string;
+    description: string;
+    html: string;
+    markdown: string;
+  }
+
+  interface ExplorerFile {
+    path: string;
+    type: FileType;
+    source?: string;
+    description?: string;
+  }
+
+  interface TreeNode {
+    name: string;
+    path: string;
+    type: 'directory' | FileType;
+    children: Map<string, TreeNode>;
+  }
+
+  const shell = document.querySelector<HTMLElement>('[data-portfolio-shell]');
+  const switchButton = document.querySelector<HTMLButtonElement>('[data-mode-switch]');
+  const sidebarToggle = document.querySelector<HTMLButtonElement>('[data-sidebar-toggle]');
+  const explorerView = document.querySelector<HTMLElement>('[data-explorer-view]');
+  const terminalView = document.querySelector<HTMLElement>('[data-terminal-view]');
+  const treeContainer = document.querySelector<HTMLElement>('[data-file-tree]');
+  const explorerContent = document.querySelector<HTMLElement>('[data-explorer-content]');
+  const documentsData = document.querySelector<HTMLScriptElement>('#explorer-documents');
+
+  if (!shell || !switchButton || !sidebarToggle || !explorerView || !terminalView || !treeContainer || !explorerContent || !documentsData) {
+    throw new Error('Portfolio shell could not be initialized.');
+  }
+
+  const documents = JSON.parse(documentsData.textContent || '[]') as PortfolioDocument[];
+  const documentMap = new Map(documents.map((document) => [document.path, document]));
+  const files: ExplorerFile[] = [
+    ...documents.map((document) => ({ path: document.path, type: 'markdown' as const })),
+    { path: 'cv/Felipe_Operti_CV.pdf', type: 'pdf', source: '/Felipe_Operti_CV.pdf', description: 'Curriculum vitae' },
+    { path: 'projects/honai/images/bee.webp', type: 'image', source: '/images/honai-cover.webp', description: 'Bee collecting pollen from a flower' },
+    { path: 'projects/honai/images/batch-architecture.webp', type: 'image', source: '/images/honai-batch.webp', description: 'HonAI batch prediction architecture' },
+    { path: 'projects/honai/images/api-architecture.webp', type: 'image', source: '/images/honai-api.webp', description: 'HonAI API and monitoring architecture' },
+  ];
+  const fileMap = new Map(files.map((file) => [file.path, file]));
+
+  const escapeHtml = (value: string) =>
+    value
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+
+  const root: TreeNode = { name: 'felipe', path: '', type: 'directory', children: new Map() };
+
+  for (const file of files) {
+    const parts = file.path.split('/');
+    let current = root;
+    parts.forEach((part, index) => {
+      const path = parts.slice(0, index + 1).join('/');
+      const isFile = index === parts.length - 1;
+      if (!current.children.has(part)) {
+        current.children.set(part, {
+          name: part,
+          path,
+          type: isFile ? file.type : 'directory',
+          children: new Map(),
+        });
+      }
+      current = current.children.get(part)!;
+    });
+  }
+
+  const terminalOrder: Record<string, string[]> = {
+    '': ['about.md', 'cv', 'projects', 'blog', 'contacts.md', 'why.md'],
+    cv: ['README.md', 'Felipe_Operti_CV.pdf'],
+    'projects/honai': ['README.md', 'images'],
+    'projects/honai/images': ['bee.webp', 'batch-architecture.webp', 'api-architecture.webp'],
+  };
+
+  const orderedChildren = (node: TreeNode) => {
+    const order = terminalOrder[node.path];
+    if (!order) return [...node.children.values()];
+    return [...node.children.values()].sort((a, b) => order.indexOf(a.name) - order.indexOf(b.name));
+  };
+
+  const renderNode = (node: TreeNode, isRoot = false): HTMLElement => {
+    const item = document.createElement('li');
+    if (node.type === 'directory') {
+      const details = document.createElement('details');
+      details.open = isRoot;
+      const summary = document.createElement('summary');
+      summary.className = 'tree-folder';
+      summary.textContent = node.name;
+      details.append(summary);
+
+      const children = document.createElement('ul');
+      orderedChildren(node).forEach((child) => children.append(renderNode(child)));
+      details.append(children);
+      item.append(details);
+      return item;
+    }
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'tree-file';
+    button.textContent = node.name;
+    button.dataset.explorerPath = node.path;
+    item.append(button);
+    return item;
+  };
+
+  const tree = document.createElement('ul');
+  tree.className = 'tree-root';
+  tree.append(renderNode(root, true));
+  treeContainer.append(tree);
+
+  const landingMarkup = explorerContent.innerHTML;
+
+  const updateFileUrl = (path?: string) => {
+    const url = new URL(window.location.href);
+    if (path) url.searchParams.set('file', path);
+    else url.searchParams.delete('file');
+    if (url.href !== window.location.href) history.pushState({}, '', url);
+  };
+
+  const showLanding = (updateUrl = true) => {
+    explorerContent.innerHTML = landingMarkup;
+    treeContainer.querySelectorAll('[aria-current="page"]').forEach((item) => item.removeAttribute('aria-current'));
+    if (updateUrl) updateFileUrl();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const showFile = (path: string, updateUrl = true) => {
+    const file = fileMap.get(path);
+    if (!file) return;
+
+    const downloadAction = file.type === 'markdown'
+      ? '<button type="button" data-explorer-download="' + escapeHtml(path) + '">[ download ]</button>'
+      : '';
+    const pathBar =
+      '<div class="explorer-path"><span>~/'+ escapeHtml(path) +'</span>' +
+      '<div class="explorer-path-actions">' + downloadAction +
+      '<button type="button" data-explorer-home>[ close ]</button></div></div>';
+
+    if (file.type === 'markdown') {
+      const document = documentMap.get(path);
+      if (!document) return;
+      const aboutClass = path === 'about.md' ? ' explorer-document--about' : '';
+      explorerContent.innerHTML = pathBar + '<article class="explorer-document' + aboutClass + '">' + document.html + '</article>';
+    } else if (file.type === 'image' && file.source) {
+      explorerContent.innerHTML = pathBar +
+        '<figure class="explorer-image"><img src="' + escapeHtml(file.source) + '" alt="' +
+        escapeHtml(file.description || file.path) + '"><figcaption>' +
+        escapeHtml(file.description || file.path) + '</figcaption></figure>';
+    } else if (file.type === 'pdf' && file.source) {
+      explorerContent.innerHTML = pathBar +
+        '<div class="explorer-pdf"><a href="' + escapeHtml(file.source) +
+        '" download>[ download Felipe_Operti_CV.pdf ]</a></div>';
+    }
+
+    treeContainer.querySelectorAll('[aria-current="page"]').forEach((item) => item.removeAttribute('aria-current'));
+    const activeFile = [...treeContainer.querySelectorAll<HTMLButtonElement>('[data-explorer-path]')]
+      .find((button) => button.dataset.explorerPath === path);
+    activeFile?.setAttribute('aria-current', 'page');
+    let parent = activeFile?.closest<HTMLDetailsElement>('details');
+    while (parent) {
+      parent.open = true;
+      parent = parent.parentElement?.closest<HTMLDetailsElement>('details') || null;
+    }
+    if (updateUrl) updateFileUrl(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const downloadMarkdown = (path: string) => {
+    const portfolioDocument = documentMap.get(path);
+    if (!portfolioDocument) return;
+    const source = URL.createObjectURL(new Blob([portfolioDocument.markdown], { type: 'text/markdown;charset=utf-8' }));
+    const anchor = document.createElement('a');
+    anchor.href = source;
+    anchor.download = path.split('/').at(-1) || 'document.md';
+    document.body.append(anchor);
+    anchor.click();
+    anchor.remove();
+    URL.revokeObjectURL(source);
+  };
+
+  const setMode = (mode: 'explorer' | 'terminal') => {
+    const isExplorer = mode === 'explorer';
+    shell.dataset.mode = mode;
+    explorerView.hidden = !isExplorer;
+    terminalView.hidden = isExplorer;
+    const label = isExplorer ? 'Open terminal mode' : 'Open explorer mode';
+    switchButton.setAttribute('aria-label', label);
+    switchButton.title = label;
+    if (!isExplorer && window.matchMedia('(pointer: fine)').matches) {
+      terminalView.querySelector<HTMLInputElement>('[data-input]')?.focus();
+    }
+  };
+
+  switchButton.addEventListener('click', () => {
+    setMode(shell.dataset.mode === 'explorer' ? 'terminal' : 'explorer');
+  });
+
+  sidebarToggle.addEventListener('click', () => {
+    const isOpen = shell.dataset.sidebar === 'open';
+    shell.dataset.sidebar = isOpen ? 'closed' : 'open';
+    sidebarToggle.setAttribute('aria-expanded', String(!isOpen));
+    sidebarToggle.title = isOpen ? 'Open explorer sidebar' : 'Close explorer sidebar';
+  });
+
+  treeContainer.addEventListener('click', (event) => {
+    const target = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-explorer-path]');
+    if (target?.dataset.explorerPath) showFile(target.dataset.explorerPath);
+  });
+
+  explorerContent.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+    const downloadTarget = target.closest<HTMLElement>('[data-explorer-download]');
+    if (downloadTarget?.dataset.explorerDownload) downloadMarkdown(downloadTarget.dataset.explorerDownload);
+    else if (target.closest('[data-explorer-home]')) showLanding();
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-explorer-home]').forEach((button) => {
+    button.addEventListener('click', () => showLanding());
+  });
+
+  window.addEventListener('popstate', () => {
+    const path = new URL(window.location.href).searchParams.get('file');
+    if (path && fileMap.has(path)) showFile(path, false);
+    else showLanding(false);
+  });
+
+  const initialFile = new URL(window.location.href).searchParams.get('file');
+  if (initialFile && fileMap.has(initialFile)) showFile(initialFile, false);
+</script>
+
+<style>
+  .portfolio-shell {
+    position: relative;
+    min-height: calc(100svh - clamp(1.5rem, 6vw, 5rem));
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .mode-switch {
+    position: fixed;
+    z-index: 20;
+    top: clamp(1rem, 3vw, 2.75rem);
+    right: clamp(1rem, 3vw, 2.75rem);
+    display: grid;
+    width: 2.8rem;
+    height: 2.8rem;
+    padding: 0.65rem;
+    border: 0;
+    place-items: center;
+    color: #fff;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .mode-switch:hover {
+    color: #aaa;
+  }
+
+  .mode-icon {
+    width: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    stroke-width: 1.5;
+  }
+
+  .mode-icon--explorer,
+  .portfolio-shell[data-mode='terminal'] .mode-icon--terminal {
+    display: none;
+  }
+
+  .portfolio-shell[data-mode='terminal'] .mode-icon--explorer {
+    display: block;
+  }
+
+  .explorer-view {
+    display: grid;
+    min-height: calc(100svh - clamp(1.5rem, 6vw, 5rem));
+    border-bottom: 1px solid var(--line);
+    grid-template-columns: clamp(15rem, 23vw, 21rem) minmax(0, 1fr);
+  }
+
+  .explorer-view[hidden],
+  .terminal-view[hidden] {
+    display: none !important;
+  }
+
+  .portfolio-shell[data-sidebar='closed'] .explorer-view {
+    grid-template-columns: 0 minmax(0, 1fr);
+  }
+
+  .explorer-sidebar {
+    position: sticky;
+    top: clamp(0.75rem, 3vw, 2.5rem);
+    height: calc(100svh - clamp(1.5rem, 6vw, 5rem));
+    overflow: auto;
+    border-right: 1px solid var(--line);
+    background: #080808;
+    scrollbar-width: thin;
+  }
+
+  .sidebar-toggle {
+    position: absolute;
+    z-index: 3;
+    top: 0.7rem;
+    right: 0.7rem;
+    padding: 0.25rem 0.35rem;
+    border: 0;
+    color: #aaa;
+    background: #080808;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .sidebar-toggle:hover {
+    color: #fff;
+  }
+
+  .sidebar-toggle-closed {
+    display: none;
+  }
+
+  .portfolio-shell[data-sidebar='closed'] .explorer-sidebar {
+    overflow: visible;
+    border: 0;
+    background: transparent;
+  }
+
+  .portfolio-shell[data-sidebar='closed'] .sidebar-toggle {
+    right: auto;
+    left: 0.7rem;
+  }
+
+  .portfolio-shell[data-sidebar='closed'] .sidebar-toggle-open,
+  .portfolio-shell[data-sidebar='closed'] .explorer-heading,
+  .portfolio-shell[data-sidebar='closed'] .file-tree {
+    display: none;
+  }
+
+  .portfolio-shell[data-sidebar='closed'] .sidebar-toggle-closed {
+    display: inline;
+  }
+
+  .explorer-heading {
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    padding: 1rem 3.5rem 1rem 1.15rem;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    color: #fff;
+    background: #080808;
+    font: inherit;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .file-tree {
+    padding: 0.8rem 0.65rem 2rem;
+    color: #aaa;
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  .file-tree :global(ul) {
+    margin: 0;
+    padding: 0 0 0 0.85rem;
+    list-style: none;
+  }
+
+  .file-tree :global(.tree-root) {
+    padding-left: 0;
+  }
+
+  .file-tree :global(summary),
+  .file-tree :global(.tree-file) {
+    width: 100%;
+    min-width: 0;
+    padding: 0.22rem 0.35rem;
+    color: inherit;
+    background: transparent;
+    font: inherit;
+    text-align: left;
+  }
+
+  .file-tree :global(summary) {
+    display: grid;
+    border: 0;
+    grid-template-columns: 1.2rem minmax(0, 1fr);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .file-tree :global(summary::-webkit-details-marker) {
+    display: none;
+  }
+
+  .file-tree :global(summary::before) {
+    color: #777;
+    content: '>';
+  }
+
+  .file-tree :global(details[open] > summary::before) {
+    content: 'v';
+  }
+
+  .file-tree :global(.tree-file) {
+    display: block;
+    padding-left: 1.55rem;
+    border: 0;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+  }
+
+  .file-tree :global(summary:hover),
+  .file-tree :global(.tree-file:hover),
+  .file-tree :global(.tree-file[aria-current='page']) {
+    color: #fff;
+    background: #151515;
+  }
+
+  .explorer-content {
+    min-width: 0;
+  }
+
+  .explorer-landing {
+    display: grid;
+    min-height: calc(100svh - clamp(1.5rem, 6vw, 5rem));
+    padding: 5rem clamp(1.5rem, 5vw, 5rem);
+    place-items: center;
+    text-align: center;
+  }
+
+  .explorer-landing h1 {
+    margin: 0 0 0.6rem;
+    color: #fff;
+    font-size: clamp(2rem, 6vw, 5.5rem);
+    letter-spacing: -0.06em;
+    text-shadow:
+      1px 1px 0 #d0d0d0,
+      2px 2px 0 #a0a0a0,
+      3px 3px 0 #707070,
+      4px 4px 0 #404040,
+      5px 5px 0 #181818,
+      9px 9px 18px #000;
+  }
+
+  .explorer-landing p {
+    margin: 0.3rem 0;
+  }
+
+  .explorer-landing a {
+    color: #fff;
+  }
+
+  .explorer-content :global(.explorer-path) {
+    position: sticky;
+    z-index: 2;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.8rem 4.5rem 0.8rem clamp(1.25rem, 4vw, 4rem);
+    border-bottom: 1px solid var(--line);
+    color: #777;
+    background: rgb(5 5 5 / 96%);
+    font-size: 0.72rem;
+  }
+
+  .explorer-content :global(.explorer-path span) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .explorer-content :global(.explorer-path button) {
+    flex: none;
+    padding: 0;
+    border: 0;
+    color: #aaa;
+    background: transparent;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .explorer-content :global(.explorer-path-actions) {
+    display: flex;
+    flex: none;
+    gap: 1rem;
+  }
+
+  .explorer-content :global(.explorer-document) {
+    width: min(100%, 104ch);
+    padding: clamp(2rem, 5vw, 4.5rem) clamp(1.25rem, 5vw, 5rem);
+    color: #c8c8c8;
+    line-height: 1.8;
+  }
+
+  .explorer-content :global(.explorer-document h1),
+  .explorer-content :global(.explorer-document h2),
+  .explorer-content :global(.explorer-document h3) {
+    margin: 2rem 0 0.9rem;
+    color: #fff;
+    letter-spacing: -0.03em;
+  }
+
+  .explorer-content :global(.explorer-document h1) {
+    margin-top: 0;
+    font-size: clamp(1.7rem, 4vw, 3rem);
+  }
+
+  .explorer-content :global(.explorer-document h2) {
+    font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+  }
+
+  .explorer-content :global(.explorer-document h3) {
+    font-size: 1rem;
+  }
+
+  .explorer-content :global(.explorer-document p),
+  .explorer-content :global(.explorer-document ul),
+  .explorer-content :global(.explorer-document ol),
+  .explorer-content :global(.explorer-document pre),
+  .explorer-content :global(.explorer-document blockquote) {
+    margin: 0 0 1.25rem;
+  }
+
+  .explorer-content :global(.explorer-document a),
+  .explorer-content :global(.explorer-pdf a) {
+    color: #fff;
+  }
+
+  .explorer-content :global(.explorer-document pre) {
+    overflow-x: auto;
+    padding: 1rem;
+    border-left: 1px solid #555;
+    background: #0a0a0a;
+  }
+
+  .explorer-content :global(.explorer-document blockquote) {
+    padding-left: 1rem;
+    border-left: 1px solid #555;
+    color: #aaa;
+  }
+
+  .explorer-content :global(.explorer-document img) {
+    display: block;
+    width: min(100%, 72rem);
+    max-height: 78vh;
+    margin: 2rem 0;
+    object-fit: contain;
+  }
+
+  .explorer-content :global(.explorer-document--about img) {
+    width: min(50%, 30rem);
+  }
+
+  .explorer-content :global(.explorer-image),
+  .explorer-content :global(.explorer-pdf) {
+    padding: clamp(2rem, 5vw, 4.5rem) clamp(1.25rem, 5vw, 5rem);
+  }
+
+  .explorer-content :global(.explorer-image) {
+    margin: 0;
+  }
+
+  .explorer-content :global(.explorer-image img) {
+    display: block;
+    width: 100%;
+    max-height: 76vh;
+    object-fit: contain;
+  }
+
+  .explorer-content :global(.explorer-image figcaption) {
+    margin-top: 0.7rem;
+    color: #777;
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 760px) {
+    .explorer-view {
+      min-height: 100svh;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .explorer-sidebar {
+      position: relative;
+      top: 0;
+      width: 100%;
+      height: auto;
+      max-height: 42svh;
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .portfolio-shell[data-sidebar='closed'] .explorer-view {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: 0 minmax(0, 1fr);
+    }
+
+    .explorer-landing {
+      min-height: 58svh;
+    }
+
+    .explorer-content :global(.explorer-path) {
+      padding-right: 4rem;
+    }
+  }
+</style>

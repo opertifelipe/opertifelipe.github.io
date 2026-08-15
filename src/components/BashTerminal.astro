@@ -117,10 +117,6 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
     };
   };
 
-  const blogEntries = documents
-    .filter((document) => document.path.startsWith('blog/') && document.path !== 'blog/README.md')
-    .map((document) => markdownEntry(document.path));
-
   const fileSystem: Record<string, Entry[]> = {
     '/': [{ name: 'home', type: 'directory' }],
     '/home': [{ name: 'felipe', type: 'directory' }],
@@ -146,8 +142,29 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
       { name: 'batch-architecture.webp', type: 'image', source: '/images/honai-batch.webp', description: 'HonAI batch prediction architecture.' },
       { name: 'api-architecture.webp', type: 'image', source: '/images/honai-api.webp', description: 'HonAI API and monitoring architecture.' },
     ],
-    [HOME + '/blog']: [markdownEntry('blog/README.md'), ...blogEntries],
+    [HOME + '/blog']: [markdownEntry('blog/README.md')],
   };
+
+  documents
+    .filter((document) => document.path.startsWith('blog/') && document.path !== 'blog/README.md')
+    .forEach((document) => {
+      const parts = document.path.slice('blog/'.length).split('/');
+      let currentPath = HOME + '/blog';
+
+      parts.forEach((part, index) => {
+        const isFile = index === parts.length - 1;
+        if (isFile) {
+          fileSystem[currentPath].push(markdownEntry(document.path));
+          return;
+        }
+
+        if (!fileSystem[currentPath].some((entry) => entry.type === 'directory' && entry.name === part)) {
+          fileSystem[currentPath].push({ name: part, type: 'directory' });
+        }
+        currentPath += '/' + part;
+        fileSystem[currentPath] ||= [];
+      });
+    });
 
   const escapeHtml = (value: string) =>
     value
@@ -310,7 +327,7 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
       return;
     }
     appendHtml(
-      '<article class="rich-output markdown-output">' +
+      '<article class="rich-output markdown-output' + (entry.documentPath === 'about.md' ? ' document-about' : '') + '">' +
         '<p class="document-path">' + escapeHtml(displayPath(path)) + ' · ' +
           commandButton('[download]', 'download ' + displayPath(path)) + '</p>' +
         document.html +
@@ -610,7 +627,6 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
 
   renderLanding();
 
-  if (window.matchMedia('(pointer: fine)').matches) input.focus();
 </script>
 
 <style>
@@ -716,16 +732,6 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
     font-weight: 650;
   }
 
-  .terminal-output :global(.entry-image::before) {
-    color: var(--muted);
-    content: '[img] ';
-  }
-
-  .terminal-output :global(.entry-pdf::before) {
-    color: var(--muted);
-    content: '[pdf] ';
-  }
-
   .terminal-output :global(.long-list) {
     display: grid;
     gap: 0.25rem;
@@ -813,6 +819,10 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
     margin: 2rem 0;
     object-fit: contain;
     cursor: zoom-in;
+  }
+
+  .terminal-output :global(.document-about img) {
+    width: min(50%, 30rem);
   }
 
   .terminal-output :global(.help-output dl) {
