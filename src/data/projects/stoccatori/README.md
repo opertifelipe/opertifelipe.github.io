@@ -6,6 +6,8 @@ path: projects/stoccatori/README.md
 
 # Stoccatori
 
+![Agricultural storage partners sending documents through a secure review workflow](/images/projects/stoccatori-document-workflow.webp)
+
 Stoccatori is a web platform developed to collect and manage the documentation that agricultural storage partners send to the Barilla administrative team.
 
 Each storage partner works with a defined set of companies and prepares a structured submission for each one. The workflow covers company documentation, crop records, privacy forms and supporting files, keeping the material organised throughout the collection and review process.

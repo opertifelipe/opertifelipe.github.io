@@ -12,6 +12,8 @@ draft: false
 
 # A Stanford course worth your time
 
+![University lecture visualising the progression from attention mechanisms to transformer systems](/images/blog/stanford-transformers-llms.webp)
+
 I recommend the complete [Stanford CME295: Transformers & Large Language Models](https://cme295.stanford.edu/syllabus/), a series of nine lectures lasting roughly two hours each.
 
 The course follows a clear progression. It starts with tokenization, embeddings, recurrent networks, attention and the Transformer, then moves through modern architectures, LLM training, quantization, supervised fine-tuning and LoRA. The later lectures cover preference tuning, RLHF, DPO, reasoning models, GRPO, RAG, tool calling, agents and evaluation.

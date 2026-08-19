@@ -6,6 +6,8 @@ path: projects/frontiers/README.md
 
 # Frontiers Journal Recommendation
 
+![Scientific manuscript matched to three journal clusters through semantic embeddings](/images/projects/frontiers-journal-recommendation.webp)
+
 This project is an end-to-end NLP recommendation system developed for **Frontiers**. Given the text of a scientific paper or an uploaded PDF, it returns the three Frontiers journals most relevant to the manuscript.
 
 ## Dataset and preprocessing

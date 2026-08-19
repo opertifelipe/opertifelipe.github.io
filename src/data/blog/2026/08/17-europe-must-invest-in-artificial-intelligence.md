@@ -12,6 +12,8 @@ draft: false
 
 # Europe Must Invest in Artificial Intelligence
 
+![European research and compute infrastructure connected across the continent](/images/blog/europe-ai-investment.webp)
+
 Europe cannot afford to become the continent that writes rules for technologies built elsewhere. Responsible AI and ethics matter, but they cannot substitute for industrial policy. We should spend less on overlapping bureaucracy, committees, and slow procedures, and far more on fundamental research, compute infrastructure, energy, semiconductors, open datasets, competitive salaries, and capital for companies that need to scale.
 
 Through [InvestAI](https://commission.europa.eu/topics/competitiveness/ai-continent_en), the European Commission plans to mobilise €200 billion, establish at least 19 AI factories, and finance up to five AI gigafactories. This is the right direction, but mobilising capital is not the same as turning it into GPUs, laboratories, models, and products. The [European Court of Auditors](https://op.europa.eu/en/publication-detail/-/publication/a064c772-1ef3-11ef-a251-01aa75ed71a1/language-en) found that earlier EU actions had limited effects and did not accelerate AI investment in line with global leaders.

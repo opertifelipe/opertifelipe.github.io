@@ -12,6 +12,8 @@ draft: false
 
 # How skills and subagents work in Deep Agents
 
+![Central AI orchestrator delegating work to isolated subagents and modular skills](/images/blog/deep-agents-skills-subagents.webp)
+
 [Deep Agents](https://docs.langchain.com/oss/python/deepagents/overview) is an opinionated agent harness from LangChain, built on LangChain components and the LangGraph runtime. It adds planning, filesystem-backed context management, and delegation to the normal tool-calling loop. Two of its most useful abstractions are skills and subagents, but they solve different problems.
 
 A [skill](https://docs.langchain.com/oss/python/deepagents/skills) packages reusable knowledge and a workflow in a folder centred on `SKILL.md`, with optional scripts, references, and templates. Deep Agents does not place every skill in the model context. It initially exposes their descriptions, matches them against the request, and reads the full instructions only when one is relevant. This progressive disclosure keeps the prompt smaller while still giving the agent precise procedures when they are needed.

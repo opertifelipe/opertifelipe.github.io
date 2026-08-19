@@ -12,6 +12,8 @@ draft: false
 
 # How quantization-aware training works
 
+![Neural network adapting from high-precision signals to compact quantized weights](/images/blog/qat-torchao-gemma-4.webp)
+
 Quantization reduces the precision of model weights and activations, often from BF16 or FP32 to INT8 or INT4. This lowers storage, memory bandwidth and inference cost, but rounding many values onto a much smaller numerical grid can also reduce model quality.
 
 Post-training quantization applies that transformation after training. The model never sees the error introduced by rounding and clipping. Quantization-aware training, or QAT, brings an approximation of the same error into the forward pass. The parameters remain trainable in high precision, but *fake quantization* makes the model operate as if selected tensors had already been quantized. Backpropagation can then adapt the weights to values that will survive the final low-bit representation.

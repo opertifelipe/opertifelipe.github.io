@@ -57,6 +57,14 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
     <div class="explorer-content" data-explorer-content aria-live="polite">
       <div class="explorer-landing" data-explorer-landing>
         <header>
+          <img
+            class="explorer-portrait"
+            src="/images/felipe-portrait.webp"
+            alt="Portrait of Felipe Operti"
+            width="240"
+            height="240"
+            decoding="async"
+          />
           <h1>Felipe Operti</h1>
           <p>AI Architect and AI Engineer</p>
           <p><a href="mailto:operti.felipe@gmail.com">operti.felipe@gmail.com</a></p>
@@ -589,6 +597,17 @@ const serializedDocuments = JSON.stringify(documents).replaceAll('<', '\\u003c')
       4px 4px 0 #404040,
       5px 5px 0 #181818,
       9px 9px 18px #000;
+  }
+
+  .explorer-portrait {
+    display: block;
+    width: clamp(8rem, 15vw, 12rem);
+    height: clamp(8rem, 15vw, 12rem);
+    margin: 0 auto 1.6rem;
+    border: 1px solid var(--line-bright);
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 45%;
   }
 
   .explorer-landing p {

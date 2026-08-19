@@ -6,6 +6,8 @@ path: projects/trl/README.md
 
 # TRL — TorchAO INT4 QAT
 
+![Transformer training loop converting adapted weights into a compact INT4 representation](/images/projects/trl-torchao-int4-qat.webp)
+
 This proposed open-source contribution adds opt-in **TorchAO INT4 weight-only quantization-aware training (QAT)** to Hugging Face TRL's `SFTTrainer`. The work is currently available as a draft pull request and follows the upstream TRL contribution requirements.
 
 QAT simulates the rounding and clipping of the final low-bit model during training. The optimiser can therefore adapt the weights to their future INT4 representation, reducing the quality loss that can occur with post-training quantisation while retaining the deployment benefits of a compact model.
