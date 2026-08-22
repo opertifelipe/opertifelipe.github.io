@@ -1,37 +1,21 @@
 ---
-import { getCollection } from 'astro:content';
-import { marked } from 'marked';
-import PortfolioShell from '../components/PortfolioShell.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const staticDocuments = await getCollection('documents');
-const blogPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
-);
-
-const documents = await Promise.all([
-  ...staticDocuments.map(async (document) => ({
-    path: document.data.path,
-    title: document.data.title,
-    description: document.data.description,
-    html: await marked.parse(document.body || ''),
-    markdown: document.body || '',
-  })),
-  ...blogPosts.map(async (post) => ({
-    path: `blog/${post.id}.md`,
-    title: post.data.title,
-    description: post.data.description,
-    html: await marked.parse(post.body || ''),
-    markdown: post.body || '',
-    modified: post.data.publishedAt.toISOString(),
-    tags: post.data.tags,
-  })),
-]);
 ---
 
 <BaseLayout
   title="Felipe Operti"
-  description="Explore Felipe Operti's work, CV and writing through a file explorer or interactive Bash terminal."
+  description="Felipe Operti, AI Architect & Engineer. Explore his work, CV and writing."
 >
-  <PortfolioShell documents={documents} />
+  <section class="home-hero">
+    <img
+      src="/images/felipe-portrait.webp"
+      alt="Portrait of Felipe Operti"
+      width="240"
+      height="240"
+      decoding="async"
+    />
+    <h1>Felipe Operti</h1>
+    <p class="home-role">AI Architect &amp; Engineer</p>
+    <p><a href="mailto:operti.felipe@gmail.com">operti.felipe@gmail.com</a></p>
+  </section>
 </BaseLayout>

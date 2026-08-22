@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import SearchableList from '../../components/SearchableList.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { excerptFromMarkdown, projectSlug } from '../../lib/content';
+
+const projects = (await getCollection('projects'))
+  .map((project) => ({
+    title: project.data.title,
+    publishedAt: project.data.publishedAt,
+    excerpt: excerptFromMarkdown(project.body || ''),
+    href: `/projects/${projectSlug(project.data.path)}/`,
+  }))
+  .sort((a, b) => b.publishedAt.valueOf() - a.publishedAt.valueOf() || a.title.localeCompare(b.title));
+---
+
+<BaseLayout title="Projects" description="Selected engineering, machine-learning and research projects by Felipe Operti.">
+  <header class="page-heading">
+    <p class="eyebrow">Selected work</p>
+    <h1>Projects</h1>
+  </header>
+  <SearchableList items={projects} label="projects" />
+</BaseLayout>

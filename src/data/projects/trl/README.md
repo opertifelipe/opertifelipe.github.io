@@ -2,6 +2,7 @@
 title: TRL — TorchAO INT4 QAT
 description: Open-source contribution adding TorchAO quantization-aware training to TRL.
 path: projects/trl/README.md
+publishedAt: 2026-08-15
 ---
 
 # TRL — TorchAO INT4 QAT

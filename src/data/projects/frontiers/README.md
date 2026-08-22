@@ -2,6 +2,7 @@
 title: Frontiers Journal Recommendation
 description: NLP system that recommends the most suitable Frontiers journals for a paper.
 path: projects/frontiers/README.md
+publishedAt: 2026-08-15
 ---
 
 # Frontiers Journal Recommendation

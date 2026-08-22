@@ -2,6 +2,7 @@
 title: Stoccatori
 description: Document workflow for agricultural storage partners and administrative teams.
 path: projects/stoccatori/README.md
+publishedAt: 2026-08-15
 ---
 
 # Stoccatori

@@ -9,4 +9,4 @@ draft: true
 
 This file is an unpublished writing template. Replace this paragraph with the article introduction.
 
-Continue the article directly as short prose. Links, lists, quotes and fenced code blocks inherit the terminal theme.
+Continue the article directly as short prose. Links, lists, quotes and fenced code blocks use the site styles automatically.

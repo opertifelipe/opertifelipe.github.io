@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import SiteNavigation from '../components/SiteNavigation.astro';
 
 interface Props {
   title: string;
@@ -38,9 +39,11 @@ const socialImage = new URL(image, Astro.site);
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
-    <div class="screen-glow" aria-hidden="true"></div>
-    <main id="content" class="standalone-content">
-      <slot />
-    </main>
+    <div class="site-shell">
+      <SiteNavigation />
+      <main id="content" class="site-content">
+        <slot />
+      </main>
+    </div>
   </body>
 </html>

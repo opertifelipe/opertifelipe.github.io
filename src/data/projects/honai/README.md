@@ -2,6 +2,7 @@
 title: HonAI
 description: Machine learning for honey production.
 path: projects/honai/README.md
+publishedAt: 2026-08-15
 ---
 
 # HonAI

@@ -2,6 +2,7 @@
 title: Aurora
 description: AI agent for personal finance and behavioral coaching.
 path: projects/aurora/README.md
+publishedAt: 2026-08-15
 ---
 
 # Aurora

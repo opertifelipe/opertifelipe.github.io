@@ -1,0 +1,66 @@
+---
+import { formatPublicationDate, toIsoDate } from '../lib/content';
+
+interface ListItem {
+  title: string;
+  publishedAt: Date;
+  excerpt: string;
+  href: string;
+}
+
+interface Props {
+  items: ListItem[];
+  label: string;
+}
+
+const { items, label } = Astro.props;
+---
+
+<div class="collection-search" data-searchable-list>
+  <label for="collection-search">Search by title</label>
+  <input
+    id="collection-search"
+    type="search"
+    placeholder={`Search ${label.toLowerCase()}…`}
+    autocomplete="off"
+    data-search-input
+  />
+
+  <div class="collection-list">
+    {
+      items.map((item) => (
+        <article class="collection-item" data-search-item data-title={item.title.toLocaleLowerCase()}>
+          <time datetime={toIsoDate(item.publishedAt)}>
+            {formatPublicationDate(item.publishedAt)}
+          </time>
+          <h2><a href={item.href}>{item.title}</a></h2>
+          <p>{item.excerpt}</p>
+          <a class="read-link" href={item.href} aria-label={`Read ${item.title}`}>Read more →</a>
+        </article>
+      ))
+    }
+  </div>
+
+  <p class="search-empty" data-search-empty hidden>No titles match your search.</p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-searchable-list]').forEach((list) => {
+    const input = list.querySelector<HTMLInputElement>('[data-search-input]');
+    const items = [...list.querySelectorAll<HTMLElement>('[data-search-item]')];
+    const empty = list.querySelector<HTMLElement>('[data-search-empty]');
+
+    input?.addEventListener('input', () => {
+      const query = input.value.trim().toLocaleLowerCase();
+      let visibleItems = 0;
+
+      items.forEach((item) => {
+        const isVisible = (item.dataset.title || '').includes(query);
+        item.hidden = !isVisible;
+        if (isVisible) visibleItems += 1;
+      });
+
+      if (empty) empty.hidden = visibleItems !== 0;
+    });
+  });
+</script>

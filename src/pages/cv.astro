@@ -1,0 +1,17 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const document = (await getCollection('pages')).find(({ data }) => data.path === 'cv/README.md');
+if (!document) throw new Error('CV document not found.');
+const { Content } = await render(document);
+---
+
+<BaseLayout title={document.data.title} description={document.data.description}>
+  <article class="document">
+    <Content />
+  </article>
+  <div class="page-action">
+    <a href="/Felipe_Operti_CV.pdf" download>Download CV</a>
+  </div>
+</BaseLayout>

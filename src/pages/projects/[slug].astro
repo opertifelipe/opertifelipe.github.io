@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatPublicationDate, projectSlug, toIsoDate } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: projectSlug(project.data.path) },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout title={project.data.title} description={project.data.description}>
+  <div class="detail-meta">
+    <a href="/projects/">← All projects</a>
+    <time datetime={toIsoDate(project.data.publishedAt)}>
+      {formatPublicationDate(project.data.publishedAt)}
+    </time>
+  </div>
+  <article class="document">
+    <Content />
+  </article>
+</BaseLayout>

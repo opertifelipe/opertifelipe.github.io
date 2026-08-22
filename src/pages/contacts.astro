@@ -1,0 +1,14 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const document = (await getCollection('pages')).find(({ data }) => data.path === 'contacts.md');
+if (!document) throw new Error('Contacts document not found.');
+const { Content } = await render(document);
+---
+
+<BaseLayout title={document.data.title} description={document.data.description}>
+  <article class="document">
+    <Content />
+  </article>
+</BaseLayout>

@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import SearchableList from '../../components/SearchableList.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { blogSlug, excerptFromMarkdown } from '../../lib/content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .map((post) => ({
+    title: post.data.title,
+    publishedAt: post.data.publishedAt,
+    excerpt: excerptFromMarkdown(post.body || ''),
+    href: `/blog/${blogSlug(post.id)}/`,
+  }))
+  .sort((a, b) => b.publishedAt.valueOf() - a.publishedAt.valueOf());
+---
+
+<BaseLayout title="Blog" description="Writing by Felipe Operti about artificial intelligence, machine learning and technology.">
+  <header class="page-heading">
+    <p class="eyebrow">Notes and ideas</p>
+    <h1>Blog</h1>
+  </header>
+  <SearchableList items={posts} label="articles" />
+</BaseLayout>
