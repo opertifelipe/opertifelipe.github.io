@@ -105,7 +105,7 @@ Projects automatically appear on the Projects page, are ordered by publication d
 npm run cv:pdf
 ~~~
 
-The command writes the PDF to `public/Felipe_Operti_CV.pdf`. Commit and push the LaTeX source to `main`; the deployment workflow runs the same command and publishes the PDF at `/Felipe_Operti_CV.pdf`, linked from the CV page. The site includes only the PDF, while the LaTeX source remains visible on GitHub.
+The command writes the PDF to `public/Felipe_Operti_CV.pdf`. Run it before committing the CV, then commit both the LaTeX source and the generated PDF. The deployment workflow publishes the committed PDF at `/Felipe_Operti_CV.pdf`, linked from the CV page. The LaTeX source remains visible on GitHub.
 
 ## Deployment
 

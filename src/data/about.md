@@ -1,6 +1,6 @@
 ---
 title: About
-description: Felipe Operti is an AI Architect and AI Engineer working across NLP, generative AI and cloud-based machine learning.
+description: AI Architect and AI Engineer working on NLP, Generative AI, multi-agent systems and Local AI.
 path: about.md
 ---
 
@@ -8,18 +8,10 @@ path: about.md
 
 ![Felipe Operti in the mountains](/images/profile.webp)
 
-I am an **AI Architect and AI Engineer** based in Turin, Italy, with expertise in NLP, Generative AI and scalable Machine Learning systems.
+I am an **AI Architect and AI Engineer** with deep expertise in NLP, Generative AI and scalable machine-learning systems. My work focuses on multi-agent systems, and I am particularly interested in Local AI and open-source models.
 
-At Reale Mutua, I design end-to-end AI solutions and coordinate engineering teams. My work spans cloud-based AI services and applications that use unstructured data. Alongside that role, I develop AI services for agricultural and beekeeping applications through FraleAnalitica. Earlier roles included CRM models and personal-loan pricing in banking, and NLP solutions in technology.
+I design and deploy end-to-end AI solutions, lead engineering teams and turn complex business challenges into reliable products. My experience spans insurance, banking, technology, agriculture and academic research.
 
-I have a PhD in Physics (Complex Systems), with research in computational methods for socio-economic sciences. That background still shapes how I approach problems: measure, model, test and iterate.
+Before working in industry, I earned a PhD in Physics of Complex Systems, researching computational methods for socio-economic sciences.
 
-I am especially interested in multi-agent systems, local AI and open-source models.
-
-## Current focus
-
-- AI and ML solution architecture
-- Generative AI and Natural Language Processing
-- Cloud-based machine-learning systems
-- Coordination of engineering teams
-- Azure and Databricks
+I am currently based in Turin, Italy.
