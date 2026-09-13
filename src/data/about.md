@@ -1,6 +1,6 @@
 ---
 title: About
-description: Profile, background and current focus.
+description: Felipe Operti is an AI Architect and AI Engineer working across NLP, generative AI and cloud-based machine learning.
 path: about.md
 ---
 
@@ -8,18 +8,18 @@ path: about.md
 
 ![Felipe Operti in the mountains](/images/profile.webp)
 
-I am an **AI Architect and AI Engineer** with deep expertise in Natural Language Processing, Generative AI and scalable machine-learning systems.
+I am an **AI Architect and AI Engineer** based in Turin, Italy, with expertise in NLP, Generative AI and scalable Machine Learning systems.
 
-I design and deploy end-to-end AI solutions, lead data science teams and turn complex business challenges into reliable products. My experience spans insurance, banking, technology, agriculture and academic research.
+At Reale Mutua, I design end-to-end AI solutions and coordinate engineering teams. My work spans cloud-based AI services and applications that use unstructured data. Alongside that role, I develop AI services for agricultural and beekeeping applications through FraleAnalitica. Earlier roles included CRM models and personal-loan pricing in banking, and NLP solutions in technology.
 
-Before working in industry, I earned a PhD in Physics of Complex Systems, researching computational methods for socio-economic sciences. That background still shapes how I approach systems: measure, model, test and iterate.
+I have a PhD in Physics (Complex Systems), with research in computational methods for socio-economic sciences. That background still shapes how I approach problems: measure, model, test and iterate.
 
-I am currently based in Turin, Italy.
+I am especially interested in multi-agent systems, local AI and open-source models.
 
 ## Current focus
 
 - AI and ML solution architecture
 - Generative AI and Natural Language Processing
-- Production-grade machine-learning systems
-- Technical leadership and team enablement
-- Azure, Databricks and cloud-native platforms
+- Cloud-based machine-learning systems
+- Coordination of engineering teams
+- Azure and Databricks

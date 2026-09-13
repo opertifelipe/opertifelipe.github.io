@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
+    "cv:pdf": "mkdir -p .cv-build && xelatex -halt-on-error -interaction=batchmode -no-shell-escape -output-directory .cv-build cv/Felipe_Operti_CV.tex && cp .cv-build/Felipe_Operti_CV.pdf public/Felipe_Operti_CV.pdf",
     "preview": "astro preview",
     "astro": "astro"
   },

@@ -97,6 +97,16 @@ Before publishing:
 
 Projects automatically appear on the Projects page, are ordered by publication date and can be searched by title.
 
+### Updating the CV PDF
+
+`cv/Felipe_Operti_CV.tex` is versioned in the public repository. To compile it locally, install XeLaTeX with the `moderncv` and Font Awesome packages, then run:
+
+~~~sh
+npm run cv:pdf
+~~~
+
+The command writes the PDF to `public/Felipe_Operti_CV.pdf`. Commit and push the LaTeX source to `main`; the deployment workflow runs the same command and publishes the PDF at `/Felipe_Operti_CV.pdf`, linked from the CV page. The site includes only the PDF, while the LaTeX source remains visible on GitHub.
+
 ## Deployment
 
 `.github/workflows/deploy.yml` builds and deploys the static site through GitHub Actions whenever `main` is updated. GitHub Pages must use **GitHub Actions** as its source.
