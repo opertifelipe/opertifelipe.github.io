@@ -15,7 +15,7 @@ const { project } = Astro.props;
 const { Content } = await render(project);
 ---
 
-<BaseLayout title={project.data.title} description={project.data.description}>
+<BaseLayout title={project.data.title} description={project.data.description} image={project.data.image}>
   <div class="detail-meta">
     <a href="/projects/">← All projects</a>
     <time datetime={toIsoDate(project.data.publishedAt)}>

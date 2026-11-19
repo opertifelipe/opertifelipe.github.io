@@ -1,6 +1,7 @@
 ---
 title: Stoccatori
 description: Document workflow for agricultural storage partners and administrative teams.
+image: /images/projects/stoccatori-document-workflow.webp
 path: projects/stoccatori/README.md
 publishedAt: 2026-08-15
 ---

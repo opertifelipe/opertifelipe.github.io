@@ -1,6 +1,7 @@
 ---
 title: TRL — TorchAO INT4 QAT
 description: Open-source contribution adding TorchAO quantization-aware training to TRL.
+image: /images/projects/trl-torchao-int4-qat.webp
 path: projects/trl/README.md
 publishedAt: 2026-08-15
 ---

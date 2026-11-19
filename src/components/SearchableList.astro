@@ -3,6 +3,7 @@ import { formatPublicationDate, toIsoDate } from '../lib/content';
 
 interface ListItem {
   title: string;
+  image: string;
   publishedAt: Date;
   excerpt: string;
   href: string;
@@ -30,12 +31,17 @@ const { items, label } = Astro.props;
     {
       items.map((item) => (
         <article class="collection-item" data-search-item data-title={item.title.toLocaleLowerCase()}>
-          <time datetime={toIsoDate(item.publishedAt)}>
-            {formatPublicationDate(item.publishedAt)}
-          </time>
-          <h2><a href={item.href}>{item.title}</a></h2>
-          <p>{item.excerpt}</p>
-          <a class="read-link" href={item.href} aria-label={`Read ${item.title}`}>Read more →</a>
+          <a class="collection-preview" href={item.href} tabindex="-1" aria-hidden="true">
+            <img src={item.image} alt="" width="640" height="360" loading="lazy" decoding="async" />
+          </a>
+          <div class="collection-details">
+            <time datetime={toIsoDate(item.publishedAt)}>
+              {formatPublicationDate(item.publishedAt)}
+            </time>
+            <h2><a href={item.href}>{item.title}</a></h2>
+            <p>{item.excerpt}</p>
+            <a class="read-link" href={item.href} aria-label={`Read ${item.title}`}>Read more →</a>
+          </div>
         </article>
       ))
     }

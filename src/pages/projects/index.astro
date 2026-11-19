@@ -2,13 +2,14 @@
 import { getCollection } from 'astro:content';
 import SearchableList from '../../components/SearchableList.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { excerptFromMarkdown, projectSlug } from '../../lib/content';
+import { projectSlug } from '../../lib/content';
 
 const projects = (await getCollection('projects'))
   .map((project) => ({
     title: project.data.title,
+    image: project.data.image,
     publishedAt: project.data.publishedAt,
-    excerpt: excerptFromMarkdown(project.body || ''),
+    excerpt: project.data.description,
     href: `/projects/${projectSlug(project.data.path)}/`,
   }))
   .sort((a, b) => b.publishedAt.valueOf() - a.publishedAt.valueOf() || a.title.localeCompare(b.title));

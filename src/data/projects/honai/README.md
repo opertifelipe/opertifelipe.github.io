@@ -1,6 +1,7 @@
 ---
 title: HonAI
 description: Machine learning for honey production.
+image: /images/honai-cover.webp
 path: projects/honai/README.md
 publishedAt: 2026-08-15
 ---
