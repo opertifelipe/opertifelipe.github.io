@@ -1,14 +1,14 @@
 ---
 title: TRL — TorchAO INT4 QAT
 description: Open-source contribution adding TorchAO quantization-aware training to TRL.
-image: /images/projects/trl-torchao-int4-qat.webp
+image: /images/projects/pytorch-logo.svg
 path: projects/trl/README.md
 publishedAt: 2026-08-15
 ---
 
 # TRL — TorchAO INT4 QAT
 
-![Transformer training loop converting adapted weights into a compact INT4 representation](/images/projects/trl-torchao-int4-qat.webp)
+![PyTorch logo](/images/projects/pytorch-logo.svg)
 
 This proposed open-source contribution adds opt-in **TorchAO INT4 weight-only quantization-aware training (QAT)** to Hugging Face TRL's `SFTTrainer`. The work is currently available as a draft pull request and follows the upstream TRL contribution requirements.
 
