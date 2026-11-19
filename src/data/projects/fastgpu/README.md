@@ -12,7 +12,7 @@ publishedAt: 2026-11-19
 
 I built fastgpu to make a cloud GPU feel like an extension of my computer. It brings RunPod compute, persistent storage, SSH, local VS Code and model inference into one command-line workflow. Keep using your own tools and training scripts; fastgpu handles the environment around them.
 
-[Get started on GitHub](https://github.com/opertifelipe/fastgpu) · [Read the CLI manual](https://github.com/opertifelipe/fastgpu/blob/main/docs/CLI.md)
+[Get started on GitHub](https://github.com/opertifelipe/fastgpu) · [Read the CLI manual](https://github.com/opertifelipe/fastgpu/blob/main/docs/manual.md)
 
 ## Keep your workspace. Choose your compute.
 
